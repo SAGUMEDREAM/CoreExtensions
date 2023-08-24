@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "minecraft:block/etho_tnt_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/etho_tnt"
+    },
+    "type=top": {
+      "model": "minecraft:block/etho_tnt_top"
+    }
+  }
+}
