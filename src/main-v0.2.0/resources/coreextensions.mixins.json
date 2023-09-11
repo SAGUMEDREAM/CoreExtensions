@@ -1,0 +1,24 @@
+{
+	"required": true,
+	"package": "com.KafuuChino0722.coreextensions.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"CEMixin",
+		"Color",
+		"StructureBlockMixin",
+		"WarningScreenAccessor",
+		"MixinManager"
+	],
+	"client": [
+		"CommandManagerMixin",
+		"MixinMinecraftClient",
+        "Verify",
+		"MixinBypassWarningScreen"
+	],
+	"server": [
+		"CEMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

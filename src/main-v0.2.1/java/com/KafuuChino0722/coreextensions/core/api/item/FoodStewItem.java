@@ -1,0 +1,49 @@
+package com.KafuuChino0722.coreextensions.core.api.item;
+
+import com.KafuuChino0722.coreextensions.core.api.util.Models;
+import com.KafuuChino0722.coreextensions.util.ReturnMessage;
+import net.minecraft.item.*;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
+
+import java.util.Map;
+
+public class FoodStewItem {
+    //You Can Create A API TO Get Your Value And Set Your Action From It,I Recommend You Should Copy It To Use.
+    public static void register(String name, String namespace, String id, int maxCount, Map<String, Object> itemData, boolean generate){
+        int hunger = (int) itemData.get("hunger");
+        double saturationModifier = (double) itemData.get("saturationModifier");
+        boolean isMeat = (boolean) itemData.get("meat");
+
+        FoodComponent.Builder foodComponentBuilder = new FoodComponent.Builder()
+                .hunger((int) hunger)
+                .saturationModifier((float) saturationModifier);
+
+        if (isMeat) {
+            foodComponentBuilder.meat();
+        }
+
+        FoodComponent foodComponent = foodComponentBuilder.build();
+        Item foodItem = new StewItem(new Item.Settings().food(foodComponent));
+        registerItem(namespace, id, foodItem);
+
+        String type = "ITEM";
+        if (generate) {
+            Models.generate(namespace, id, type);
+        }
+
+        ReturnMessage.ItemYMLRegister(name, namespace, id); //returnMessage
+    }
+
+    //API-Lib
+    public static Item registerItem(String namespace, String name, Item item) {
+        return Registry.register(Registries.ITEM, new Identifier(namespace, name), item);
+    }
+
+    public static Item registerStewItem(String namespace, String name, int maxCount) {
+        return Registry.register(Registries.ITEM, new Identifier(namespace, name),
+                new StewItem(new Item.Settings().maxCount(1).food(FoodComponents.RABBIT_STEW)));
+    }
+
+}

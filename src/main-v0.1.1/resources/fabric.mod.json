@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "coreextensions",
+	"version": "${version}",
+	"name": "核心拓展 - CoreExtensions",
+	"description": "This MOD has added many Minecraft features! Features include the ability to create small MODs without learning Java and Fabric!",
+	"authors": [
+		"稀神灵梦"
+	],
+	"contact": {
+		"homepage": "https://space.bilibili.com/158597454",
+		"sources": "https://github.com/807131829/CoreExtensions"
+	},
+	"license": "GPLv3",
+	"icon": "assets/coreextensions/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.KafuuChino0722.coreextensions.Main"
+		],
+		"fabric-datagen": [
+			"com.KafuuChino0722.coreextensions.DataGenerator"
+		]
+	},
+	"mixins": [
+		"coreextensions.mixins.json",
+		"coreextensions_openloader.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.22",
+		"minecraft": ">=1.20.1",
+		"java": ">=17",
+		"fabric-api": "*",
+		"brrp_v1": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

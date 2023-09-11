@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:spyglass"
+    },
+    "title": {
+      "translate": "advancements.moon.city.title"
+    },
+    "description": {
+      "translate": "advancements.moon.city.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "minecraft:moon/root",
+  "criteria": {
+    "entered_lunar_city": {
+      "trigger": "minecraft:enter_block",
+      "conditions": {
+        "block": "minecraft:lunar_stone_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "entered_lunar_city"
+    ]
+  ],
+  "rewards": {
+    "function": "minecraft:playsound_th15_08"
+  },
+  "sends_telemetry_event": true
+}

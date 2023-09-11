@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "minecraft:block/client_request_placeholder_block"
+    }
+  }
+}

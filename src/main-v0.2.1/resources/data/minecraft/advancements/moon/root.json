@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:end_stone"
+    },
+    "title": {
+		"translate": "advancements.moon.root.title"
+	},
+    "description": {
+		"translate": "advancements.moon.root.description"
+	},
+    "background": "minecraft:textures/gui/advancements/backgrounds/end.png",
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "minecraft:moon"
+      }
+    }
+  },
+  "rewards": {
+    "function": "minecraft:src/playsound_th15_10"
+  }
+}
