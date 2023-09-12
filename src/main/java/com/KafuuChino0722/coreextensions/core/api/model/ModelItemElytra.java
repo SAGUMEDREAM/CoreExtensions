@@ -1,5 +1,7 @@
 package com.KafuuChino0722.coreextensions.core.api.model;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.data.client.Models;
 import net.minecraft.data.client.TextureKey;
 import net.minecraft.util.Identifier;
@@ -10,6 +12,7 @@ import pers.solid.brrp.v1.model.ModelOverrideBuilder;
 
 import java.util.Collections;
 
+@Environment(EnvType.CLIENT)
 public class ModelItemElytra {
     public static void generate(String namespace, String id) {
         RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_Jmdl"));

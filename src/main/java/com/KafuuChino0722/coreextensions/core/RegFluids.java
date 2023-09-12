@@ -116,7 +116,7 @@ public class RegFluids {
                                         }
 
 
-                                        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier("coreextensions", "blocks_"+namespace+id));
+                                        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_block_lang"));
 
                                         RRPCallback.BEFORE_VANILLA.register(b -> {
                                             packs.clearResources();

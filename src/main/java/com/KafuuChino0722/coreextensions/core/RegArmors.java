@@ -140,7 +140,7 @@ public class RegArmors {
 
 
 
-                                        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_itemLang"));
+                                        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_item_lang"));
 
                                         RRPCallback.BEFORE_VANILLA.register(b -> {
                                             packs.clearResources();

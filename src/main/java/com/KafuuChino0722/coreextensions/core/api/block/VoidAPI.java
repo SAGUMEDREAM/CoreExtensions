@@ -1,7 +1,9 @@
 package com.KafuuChino0722.coreextensions.core.api.block;
 
 import com.KafuuChino0722.coreextensions.block.RealBlock;
+import com.KafuuChino0722.coreextensions.util.Reference;
 import com.KafuuChino0722.coreextensions.util.ReturnMessage;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -32,13 +34,5 @@ public class VoidAPI {
 
     public static Item registerBlockItem(String namespace, String id, Block block) {
         return Registry.register(Registries.ITEM, new Identifier(namespace, id), new BlockItem(block, new FabricItemSettings()));
-    }
-
-    public static void setupRenderLayer(Block block, Map<String, Object> blockData) {
-        boolean shouldUseCutoutLayer = (boolean) blockData.getOrDefault("useCutoutLayer", false);
-
-        if (shouldUseCutoutLayer) {
-            BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getCutout());
-        }
     }
 }

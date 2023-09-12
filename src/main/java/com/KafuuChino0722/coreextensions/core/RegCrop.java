@@ -83,7 +83,7 @@ public class RegCrop {
                                                 Models.generate(namespace, id, typee);
                                             }
 
-                                            RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_cropLang"));
+                                            RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_crop_lang"));
 
                                             String lang_us = name;
 

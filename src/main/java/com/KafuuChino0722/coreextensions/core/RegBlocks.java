@@ -159,7 +159,7 @@ public class RegBlocks {
                                             ReturnMessage.BlockYMLTYPEERROR(name, namespace, id);
                                         }
 
-                                        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_blockLang"));
+                                        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_block_lang"));
 
                                         RRPCallback.BEFORE_VANILLA.register(b -> {
                                             packs.clearResources();

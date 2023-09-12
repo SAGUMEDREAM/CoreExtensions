@@ -66,7 +66,7 @@ public class RegWeapon {
                                             ReturnMessage.WeaponYMLTYPEERROR(name, namespace, id);
                                         }
 
-                                        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id));
+                                        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_item_lang"));
 
                                         RRPCallback.BEFORE_VANILLA.register(b -> {
                                             packs.clearResources();

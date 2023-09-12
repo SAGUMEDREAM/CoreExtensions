@@ -77,7 +77,7 @@ public class RegElytra {
                                         if (generate) {
                                             Models.generate(namespace, id, typee);
                                         }
-                                        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_itemLang"));
+                                        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_item_lang"));
 
                                         RRPCallback.BEFORE_VANILLA.register(b -> {
                                             packs.clearResources();

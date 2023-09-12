@@ -3,6 +3,8 @@ package com.KafuuChino0722.coreextensions.util;
 import com.KafuuChino0722.coreextensions.Main;
 
 import com.KafuuChino0722.coreextensions.block.*;
+import com.KafuuChino0722.coreextensions.core.api.util.setupRenderLayer;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
@@ -24,6 +26,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
 import javax.naming.Name;
+
+import java.util.Map;
 
 import static net.minecraft.block.Blocks.*;
 
@@ -197,8 +201,12 @@ public class BlockManager {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(BlockManager::addItemsToIngredientTabItemGroup);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(BlockManager::addItemsToBuildGroup);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(BlockManager::addItemsToNaturalGroup);
-        BlockRenderLayerMap.INSTANCE.putBlock(COPPER_SPLEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(CHEMISTRY_TABLE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(CLOUD, RenderLayer.getCutout());
+
+        if(Reference.EnvType == EnvType.CLIENT) {
+            Map<String, Object> blockData;
+            setupRenderLayer.setNoData(COPPER_SPLEAVES);
+            setupRenderLayer.setNoData(CHEMISTRY_TABLE);
+            setupRenderLayer.setNoData(CLOUD);
+        }
     }
 }

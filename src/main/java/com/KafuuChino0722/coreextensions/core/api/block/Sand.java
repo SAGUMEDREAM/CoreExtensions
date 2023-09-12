@@ -2,7 +2,10 @@ package com.KafuuChino0722.coreextensions.core.api.block;
 
 import com.KafuuChino0722.coreextensions.core.api.util.Loots;
 import com.KafuuChino0722.coreextensions.core.api.util.Models;
+import com.KafuuChino0722.coreextensions.core.api.util.setupRenderLayer;
+import com.KafuuChino0722.coreextensions.util.Reference;
 import com.KafuuChino0722.coreextensions.util.ReturnMessage;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -40,7 +43,10 @@ public class Sand {
         Block block = new SandBlock(11098145, blockSettings);
         registerBlock(namespace, id, block);
         registerBlockItem(namespace, id, block);
-        setupRenderLayer(block, blockData); // 设置渲染层
+
+        if(Reference.EnvType == EnvType.CLIENT) {
+            setupRenderLayer.set(block, blockData); // 设置渲染层
+        }
 
         RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_tags"));
 
@@ -67,13 +73,5 @@ public class Sand {
 
     public static Item registerBlockItem(String namespace, String id, Block block) {
         return Registry.register(Registries.ITEM, new Identifier(namespace, id), new BlockItem(block, new FabricItemSettings()));
-    }
-
-    public static void setupRenderLayer(Block block, Map<String, Object> blockData) {
-        boolean shouldUseCutoutLayer = (boolean) blockData.getOrDefault("useCutoutLayer", false);
-
-        if (shouldUseCutoutLayer) {
-            BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getCutout());
-        }
     }
 }

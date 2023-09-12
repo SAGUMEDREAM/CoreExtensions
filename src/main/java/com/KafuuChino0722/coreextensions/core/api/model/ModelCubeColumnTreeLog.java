@@ -1,6 +1,8 @@
 package com.KafuuChino0722.coreextensions.core.api.model;
 
 import com.KafuuChino0722.coreextensions.util.Reference;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.client.Models;
 import net.minecraft.data.client.TextureKey;
@@ -19,6 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+@Environment(EnvType.CLIENT)
 public class ModelCubeColumnTreeLog {
 
     public static void generate(String namespace, String id) {

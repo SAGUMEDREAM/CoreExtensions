@@ -1,5 +1,7 @@
 package com.KafuuChino0722.coreextensions.core.api.model;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.data.client.Models;
 import net.minecraft.data.client.TextureKey;
 import net.minecraft.util.Identifier;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class ModelShieldBlocking {
     public static void generate(String namespace, String id) {
         RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_Blocking_Jmdl"));

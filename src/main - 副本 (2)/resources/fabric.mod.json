@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "openloaderforcoreextensions",
+	"version": "${version}",
+	"name": "OpenLoader For CoreExtensions",
+	"description": "An open source data and resource loader.",
+	"authors": [
+		"Darkhax!"
+	],
+	"contact":{
+		"homepage":"https://www.curseforge.com/minecraft/mc-mods/open-loader",
+		"sources":"https://github.com/Darkhax-Minecraft/Open-Loader",
+		"issues":"https://github.com/Darkhax-Minecraft/Open-Loader/issues"},
+	"license": "LGPL V2.1",
+	"icon": "assets/openloader/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.darkhax.openloader.core.OpenLoaderFabric"
+		],
+		"fabric-datagen": [
+			"net.darkhax.openloader.core.OpenLoaderFabricDataGenerator"
+		]
+	},
+	"mixins": [
+		"openloaderforcoreextensions.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.22",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

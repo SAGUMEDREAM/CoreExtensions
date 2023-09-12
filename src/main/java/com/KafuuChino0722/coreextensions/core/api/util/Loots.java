@@ -30,7 +30,7 @@ public class Loots {
     }
 
     public static void CROP(String namespace, String id, Map<String, Object> blockData) {
-        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_seedItem"));
+        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_seed_item"));
         String blockID = id+"_block";
         String seedID = id+"_seeds";
 
@@ -57,7 +57,7 @@ public class Loots {
     }
 
     public static void ONLY(String namespace, String id, Map<String, Object> blockData) {
-        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_Loots"));
+        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_loots"));
         RRPCallback.BEFORE_VANILLA.register(b -> {
             packs.clearResources();
             packs.addLootTable(Registries.BLOCK.get(new Identifier(namespace, id)).getLootTableId(), new VanillaBlockLootTableGenerator().drops(Registries.BLOCK.get(new Identifier(namespace, id)), ConstantLootNumberProvider.create(1)));
@@ -69,7 +69,7 @@ public class Loots {
     }
     public static void LEVEL(String namespace, String id, Map<String, Object> blockData) {
         int LEVEL = blockData.containsKey("level") ? (int) blockData.get("level") : 0;
-        RuntimeResourcePack packs_level = RuntimeResourcePack.create(new Identifier(namespace, id+"_levelLoots"));
+        RuntimeResourcePack packs_level = RuntimeResourcePack.create(new Identifier(namespace, id+"_levelloots"));
         if (LEVEL == 1) {
             RRPCallback.BEFORE_VANILLA.register(b -> {
                 packs_level.clearResources();

@@ -15,6 +15,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.Map;
 
+
 public class CubeALL {
     public static void register(String name, String namespace, String id, Map<String, Object> blockData, Boolean dropsNothing, BlockSoundGroup customSound ,double hardness, double resistance){
         FabricBlockSettings blockSettings = FabricBlockSettings.copyOf(net.minecraft.block.Blocks.STONE)
