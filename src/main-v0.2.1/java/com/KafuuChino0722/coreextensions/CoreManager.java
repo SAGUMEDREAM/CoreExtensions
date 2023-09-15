@@ -5,10 +5,10 @@ import com.KafuuChino0722.coreextensions.util.*;
 import com.KafuuChino0722.coreextensions.core.*;
 import com.KafuuChino0722.coreextensions.core.RegBlocks;
 import com.KafuuChino0722.coreextensions.core.RegPortal;
-import com.KafuuChino0722.coreextensions.core.oldapi.block.*;
-import com.KafuuChino0722.coreextensions.core.oldapi.item.*;
-import com.KafuuChino0722.coreextensions.core.oldapi.RegFuel;
-import com.KafuuChino0722.coreextensions.core.oldapi.item.RegArmor;
+import com.KafuuChino0722.coreextensions.core.oldapi_v1.block.*;
+import com.KafuuChino0722.coreextensions.core.oldapi_v1.item.*;
+import com.KafuuChino0722.coreextensions.core.oldapi_v1.RegFuel;
+import com.KafuuChino0722.coreextensions.core.oldapi_v1.item.RegArmor;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.FileReader;

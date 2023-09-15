@@ -1,4 +1,4 @@
-package com.KafuuChino0722.coreextensions.core.oldapi.block;
+package com.KafuuChino0722.coreextensions.core.oldapi_v1.block;
 
 import com.KafuuChino0722.coreextensions.Main;
 import com.KafuuChino0722.coreextensions.util.Reference;

@@ -1,4 +1,4 @@
-package com.KafuuChino0722.coreextensions.core.oldapi.item;
+package com.KafuuChino0722.coreextensions.core.oldapi_v1.item;
 
 import com.KafuuChino0722.coreextensions.Main;
 import com.KafuuChino0722.coreextensions.item.ClickItem;

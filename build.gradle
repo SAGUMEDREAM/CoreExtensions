@@ -49,7 +49,7 @@ repositories {
 	maven { url 'https://maven.frohnmeyer-wds.de/artifacts' }
 
 	
-	flatDir { dir "D:/Gradle/Fabric1.20.1/dir" }
+	//flatDir { dir "D:/Gradle/Fabric1.20.1/dir" }
 }
 
 loom {
@@ -101,7 +101,7 @@ dependencies {
 	modApi "me.shedaniel.cloth:cloth-config-fabric:11.1.106"
 	
 	//include "midnightlib:1.4.1-fabric"
-    include files('dir/OpenLoader-CEFabric-1.20.1-19.0.2.jar')
+    //include files('dir/OpenLoader-CEFabric-1.20.1-19.0.2.jar')
 	//modImplementation files('dir/midnightlib-fabric-1.2.1-sources.jar')
 	implementation 'com.google.code.gson:gson:2.8.8'
 	

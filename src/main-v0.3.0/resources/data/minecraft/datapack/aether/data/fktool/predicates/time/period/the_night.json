@@ -1,0 +1,17 @@
+{
+  "condition": "minecraft:any_of",
+  "terms": [
+    {
+      "condition": "minecraft:reference",
+      "name": "fktool:time/period/dusk"
+    },
+    {
+      "condition": "minecraft:reference",
+      "name": "fktool:time/period/night"
+    },
+    {
+      "condition": "minecraft:reference",
+      "name": "fktool:time/period/dawn"
+    }
+  ]
+}
