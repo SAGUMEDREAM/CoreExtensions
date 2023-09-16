@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "minecraft:block/stone_cutter_front",
+    "side": "minecraft:block/stone_cutter_side",
+    "top": "minecraft:block/stone_cutter_top"
+  }
+}

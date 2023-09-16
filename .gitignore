@@ -38,3 +38,10 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+src/main - 副本 (2)/resources/assets/openloader/icon.png
+src/main - 副本 (2)/java/net/darkhax/openloader/core/mixin/ExampleMixin.java
+src/main - 副本 (2)/java/net/darkhax/openloader/core/OpenLoaderFabric.java
+src/main - 副本 (2)/java/net/darkhax/openloader/core/OpenLoaderFabricDataGenerator.java
+src/main - 副本 (2)/resources/assets/openloader/icon.png
+src/main - 副本 (2)/resources/fabric.mod.json
+src/main - 副本 (2)/resources/fabric.mod.json
