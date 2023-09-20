@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "   ",
+    "   ",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:tnt"
+    }
+  },
+  "result": {
+    "item": "minecraft:etho_tnt",
+    "count": 6
+  }
+}

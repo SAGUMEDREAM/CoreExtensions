@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "AA ",
+    "AA ",
+    "   "
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:infested_cobblestone"
+    }
+  },
+  "result": {
+    "item": "minecraft:stone_cutter",
+    "count": 1
+  }
+}

@@ -1,0 +1,5 @@
+settings:
+  FEATURE_ENABLE: true #拓展包启用？
+  CORE_API : true #MOD-API启用？
+  FIRST_SHELL: false #首次运行?
+  

@@ -1,0 +1,268 @@
+package com.KafuuChino0722.coreextensions.core.api.util;
+
+import com.KafuuChino0722.coreextensions.block.CropBlocks;
+import net.fabricmc.fabric.api.mininglevel.v1.FabricMineableTags;
+import net.fabricmc.fabric.api.mininglevel.v1.MiningLevelManager;
+import net.minecraft.data.server.loottable.BlockLootTableGenerator;
+import net.minecraft.data.server.loottable.vanilla.VanillaBlockLootTableGenerator;
+import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.predicate.StatePredicate;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.util.Identifier;
+import pers.solid.brrp.v1.api.RuntimeResourcePack;
+import pers.solid.brrp.v1.fabric.api.RRPCallback;
+import pers.solid.brrp.v1.tag.IdentifiedTagBuilder;
+
+import java.util.Map;
+import java.util.Objects;
+
+public class Loots {
+
+    protected void generate(String namespace, String id) {
+        //BlockStatePropertyLootCondition.Builder builder2 = BlockStatePropertyLootCondition.builder(Blocks.WHEAT).properties(StatePredicate.Builder.create().exactMatch(CropBlock.AGE, 7));
+        //this.addDrop(Registries.BLOCK.get(new Identifier(namespace, id)), this.cropDrops(Blocks.WHEAT, Items.WHEAT, Items.WHEAT_SEEDS, builder2));
+    }
+
+    public static void addCrop(String namespace, String id, Map<String, Object> blockData, Map<String, Object> properties, int AGE) {
+        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_seed_item"));
+        String blockID = id+"_block";
+        String seedID = id+"_seeds";
+
+        RRPCallback.BEFORE_VANILLA.register(b -> {
+            packs.clearResources();
+            /*packs.addLootTable(Registries.BLOCK.get(new Identifier(namespace, id)).getLootTableId(),
+                    new VanillaBlockLootTableGenerator().drops(Registries.ITEM.get(new Identifier(namespace, id+"_seeds")), ConstantLootNumberProvider.create(1)));
+*/
+            packs.addLootTable(Registries.BLOCK.get(new Identifier(namespace, blockID)).getLootTableId(),
+                    new VanillaBlockLootTableGenerator().cropDrops(
+                            Registries.BLOCK.get(new Identifier(namespace, blockID)),
+                            Registries.ITEM.get(new Identifier(namespace, id)),
+                            Registries.ITEM.get(new Identifier(namespace, seedID)),
+                            BlockStatePropertyLootCondition.builder(Registries.BLOCK.get(new Identifier(namespace, blockID)))
+                                    .properties(StatePredicate.Builder.create().exactMatch(CropBlocks.AGE, AGE))
+                            ));
+            packs.addTag(IdentifiedTagBuilder.createBlock(BlockTags.CROPS).add(new Identifier(namespace,blockID)));
+
+            b.add(packs);
+        });
+
+        Require(namespace, id, blockData, properties);
+        RequireLevel(namespace, id, blockData, properties);
+    }
+
+    public static void addHighPlant(String namespace, String id, Map<String, Object> blockData, Map<String, Object> properties) {
+        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_ploots"));
+        RRPCallback.BEFORE_VANILLA.register(b -> {
+            packs.clearResources();
+            packs.addLootTable(Registries.BLOCK.get(new Identifier(namespace, id)).getLootTableId(), new VanillaBlockLootTableGenerator().flowerbedDrops(Registries.BLOCK.get(new Identifier(namespace, id))));
+            packs.addLootTable(Registries.BLOCK.get(new Identifier(namespace, "potted_"+id)).getLootTableId(), new VanillaBlockLootTableGenerator().pottedPlantDrops(Registries.BLOCK.get(new Identifier(namespace, "potted"+id))));
+            b.add(packs);
+        });
+
+        Require(namespace, id, blockData, properties);
+        RequireLevel(namespace, id, blockData, properties);
+    }
+
+    public static void addFruitBush(String namespace, String id, Map<String, Object> blockData, Map<String, Object> properties) {
+        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_ploots"));
+        RRPCallback.BEFORE_VANILLA.register(b -> {
+            packs.clearResources();
+            packs.addLootTable(Registries.BLOCK.get(new Identifier(namespace, id)).getLootTableId(), new VanillaBlockLootTableGenerator().drops(Registries.ITEM.get(new Identifier(namespace, id)), ConstantLootNumberProvider.create(1)));
+            b.add(packs);
+        });
+
+        Require(namespace, id, blockData, properties);
+        RequireLevel(namespace, id, blockData, properties);
+    }
+
+    public static void addSeed(String namespace, String id, Map<String, Object> blockData, Map<String, Object> properties,String seed) {
+        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_ploots"));
+        RRPCallback.BEFORE_VANILLA.register(b -> {
+            packs.clearResources();
+            packs.addLootTable(Registries.BLOCK.get(new Identifier(namespace, id)).getLootTableId(), new ModBlockLootTableGenerator(seed).seedDrops(Registries.BLOCK.get(new Identifier(namespace, id))));
+            packs.addLootTable(Registries.BLOCK.get(new Identifier(namespace, "potted_"+id)).getLootTableId(), new VanillaBlockLootTableGenerator().pottedPlantDrops(Registries.BLOCK.get(new Identifier(namespace, "potted"+id))));
+            b.add(packs);
+        });
+
+        Require(namespace, id, blockData, properties);
+        RequireLevel(namespace, id, blockData, properties);
+    }
+
+    public static void addPlant(String namespace, String id, Map<String, Object> blockData, Map<String, Object> properties) {
+        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_ploots"));
+        RRPCallback.BEFORE_VANILLA.register(b -> {
+            packs.clearResources();
+            packs.addLootTable(Registries.BLOCK.get(new Identifier(namespace, id)).getLootTableId(), new VanillaBlockLootTableGenerator().drops(Registries.BLOCK.get(new Identifier(namespace, id)), ConstantLootNumberProvider.create(1)));
+            packs.addLootTable(Registries.BLOCK.get(new Identifier(namespace, "potted_"+id)).getLootTableId(), new VanillaBlockLootTableGenerator().pottedPlantDrops(Registries.BLOCK.get(new Identifier(namespace, "potted"+id))));
+            b.add(packs);
+        });
+
+        Require(namespace, id, blockData, properties);
+        RequireLevel(namespace, id, blockData, properties);
+    }
+
+    public static void addDoor(String namespace, String id, Map<String, Object> blockData, Map<String, Object> properties) {
+        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_loots"));
+        RRPCallback.BEFORE_VANILLA.register(b -> {
+            packs.clearResources();
+            packs.addLootTable(Registries.BLOCK.get(new Identifier(namespace, id)).getLootTableId(), new VanillaBlockLootTableGenerator().doorDrops(Registries.BLOCK.get(new Identifier(namespace, id))));
+            b.add(packs);
+        });
+
+        Require(namespace, id, blockData, properties);
+        RequireLevel(namespace, id, blockData, properties);
+    }
+
+    public static void addDrop(String namespace, String id, Map<String, Object> blockData, Map<String, Object> properties) {
+        RuntimeResourcePack packs = RuntimeResourcePack.create(new Identifier(namespace, id+"_loots"));
+        RRPCallback.BEFORE_VANILLA.register(b -> {
+            packs.clearResources();
+            packs.addLootTable(Registries.BLOCK.get(new Identifier(namespace, id)).getLootTableId(), new VanillaBlockLootTableGenerator().drops(Registries.BLOCK.get(new Identifier(namespace, id)), ConstantLootNumberProvider.create(1)));
+            b.add(packs);
+        });
+
+        Require(namespace, id, blockData, properties);
+        RequireLevel(namespace, id, blockData, properties);
+    }
+    public static void RequireLevel(String namespace, String id, Map<String, Object> blockData, Map<String, Object> properties) {
+        int LEVEL = properties.containsKey("level") ? (int) properties.get("level") : 0;
+        RuntimeResourcePack packs_level = RuntimeResourcePack.create(new Identifier(namespace, id+"_levelloots"));
+        if (LEVEL == 1) {
+            RRPCallback.BEFORE_VANILLA.register(b -> {
+                packs_level.clearResources();
+                packs_level.addTag(IdentifiedTagBuilder.createBlock(BlockTags.NEEDS_STONE_TOOL).add(new Identifier(namespace,id)));
+                b.add(packs_level);
+            });
+        } else if (LEVEL == 2) {
+            RRPCallback.BEFORE_VANILLA.register(b -> {
+                packs_level.clearResources();
+                packs_level.addTag(IdentifiedTagBuilder.createBlock(BlockTags.NEEDS_IRON_TOOL).add(new Identifier(namespace,id)));
+                b.add(packs_level);
+            });
+        } else if (LEVEL == 3) {
+            RRPCallback.BEFORE_VANILLA.register(b -> {
+                packs_level.clearResources();
+                packs_level.addTag(IdentifiedTagBuilder.createBlock(BlockTags.NEEDS_DIAMOND_TOOL).add(new Identifier(namespace,id)));
+                b.add(packs_level);
+            });
+        } else if (LEVEL == 4) {
+            RRPCallback.BEFORE_VANILLA.register(b -> {
+                packs_level.clearResources();
+                packs_level.addTag(IdentifiedTagBuilder.createBlock(MiningLevelManager.getBlockTag(4)).add(new Identifier(namespace,id)));
+                b.add(packs_level);
+            });
+        } else if (LEVEL > 4) {
+            int finalLEVEL = LEVEL;
+            RRPCallback.BEFORE_VANILLA.register(b -> {
+                packs_level.clearResources();
+                packs_level.addTag(IdentifiedTagBuilder.createBlock(MiningLevelManager.getBlockTag(finalLEVEL)).add(new Identifier(namespace,id)));
+                b.add(packs_level);
+            });
+        } else {
+            LEVEL = 0;
+            }
+    }
+        public static void Require(String namespace, String id, Map<String, Object> blockData, Map<String, Object> properties) {
+            String TOOL = properties.containsKey("require") ? (String) properties.get("require") : "EMPTY";
+            RuntimeResourcePack packs_only = RuntimeResourcePack.create(new Identifier(namespace, id+"_breakonly"));
+
+            if (Objects.equals(TOOL, "AXE") || Objects.equals(TOOL, "axe")) {
+                RRPCallback.BEFORE_VANILLA.register(b -> {
+                    packs_only.clearResources();
+                    packs_only.addTag(IdentifiedTagBuilder.createBlock(BlockTags.AXE_MINEABLE).add(new Identifier(namespace,id)));
+                    b.add(packs_only);
+                });
+            } else if (Objects.equals(TOOL, "PICKAXE") || Objects.equals(TOOL, "pickaxe")) {
+                RRPCallback.BEFORE_VANILLA.register(b -> {
+                    packs_only.clearResources();
+                    packs_only.addTag(IdentifiedTagBuilder.createBlock(BlockTags.PICKAXE_MINEABLE).add(new Identifier(namespace,id)));
+                    b.add(packs_only);
+                });
+
+            } else if (Objects.equals(TOOL, "SHOVEL") || Objects.equals(TOOL, "shovel")) {
+                RRPCallback.BEFORE_VANILLA.register(b -> {
+                    packs_only.clearResources();
+                    packs_only.addTag(IdentifiedTagBuilder.createBlock(BlockTags.SHOVEL_MINEABLE).add(new Identifier(namespace,id)));
+                    b.add(packs_only);
+                });
+
+            } else if (Objects.equals(TOOL, "HOE") || Objects.equals(TOOL, "hoe")) {
+                RRPCallback.BEFORE_VANILLA.register(b -> {
+                    packs_only.clearResources();
+                    packs_only.addTag(IdentifiedTagBuilder.createBlock(BlockTags.HOE_MINEABLE).add(new Identifier(namespace,id)));
+                    b.add(packs_only);
+                });
+            } else if (Objects.equals(TOOL, "SWORD") || Objects.equals(TOOL, "sword")) {
+                RRPCallback.BEFORE_VANILLA.register(b -> {
+                    packs_only.clearResources();
+                    packs_only.addTag(IdentifiedTagBuilder.createBlock(FabricMineableTags.SWORD_MINEABLE).add(new Identifier(namespace,id)));
+                    b.add(packs_only);
+                });
+
+            } else if (Objects.equals(TOOL, "SHEARS") || Objects.equals(TOOL, "shears")) {
+                RRPCallback.BEFORE_VANILLA.register(b -> {
+                    packs_only.clearResources();
+                    packs_only.addTag(IdentifiedTagBuilder.createBlock(FabricMineableTags.SHEARS_MINEABLE).add(new Identifier(namespace,id)));
+                    b.add(packs_only);
+                });
+
+            } else if (Objects.equals(TOOL, "NULL") || Objects.equals(TOOL, "null") || Objects.equals(TOOL, "EMPTY") || Objects.equals(TOOL, "empty")) {
+
+            } else {
+
+        }
+    }
+
+        public static void Require(String namespace, String id, Map<String, Object> blockData, String TOOL) {
+            Map<String, Object> properties = (Map<String, Object>) blockData.get("properties");
+            RuntimeResourcePack packs_only = RuntimeResourcePack.create(new Identifier(namespace, id+"_breakonly"));
+
+            if (Objects.equals(TOOL, "AXE") || Objects.equals(TOOL, "axe")) {
+                RRPCallback.BEFORE_VANILLA.register(b -> {
+                    packs_only.clearResources();
+                    packs_only.addTag(IdentifiedTagBuilder.createBlock(BlockTags.AXE_MINEABLE).add(new Identifier(namespace,id)));
+                    b.add(packs_only);
+                });
+            } else if (Objects.equals(TOOL, "PICKAXE") || Objects.equals(TOOL, "pickaxe")) {
+                RRPCallback.BEFORE_VANILLA.register(b -> {
+                    packs_only.clearResources();
+                    packs_only.addTag(IdentifiedTagBuilder.createBlock(BlockTags.PICKAXE_MINEABLE).add(new Identifier(namespace,id)));
+                    b.add(packs_only);
+                });
+
+            } else if (Objects.equals(TOOL, "SHOVEL") || Objects.equals(TOOL, "shovel")) {
+                RRPCallback.BEFORE_VANILLA.register(b -> {
+                    packs_only.clearResources();
+                    packs_only.addTag(IdentifiedTagBuilder.createBlock(BlockTags.SHOVEL_MINEABLE).add(new Identifier(namespace,id)));
+                    b.add(packs_only);
+                });
+
+            } else if (Objects.equals(TOOL, "HOE") || Objects.equals(TOOL, "hoe")) {
+                RRPCallback.BEFORE_VANILLA.register(b -> {
+                    packs_only.clearResources();
+                    packs_only.addTag(IdentifiedTagBuilder.createBlock(BlockTags.HOE_MINEABLE).add(new Identifier(namespace,id)));
+                    b.add(packs_only);
+                });
+            } else if (Objects.equals(TOOL, "SWORD") || Objects.equals(TOOL, "sword")) {
+                RRPCallback.BEFORE_VANILLA.register(b -> {
+                    packs_only.clearResources();
+                    packs_only.addTag(IdentifiedTagBuilder.createBlock(FabricMineableTags.SWORD_MINEABLE).add(new Identifier(namespace,id)));
+                    b.add(packs_only);
+                });
+
+            } else if (Objects.equals(TOOL, "SHEARS") || Objects.equals(TOOL, "shears")) {
+                RRPCallback.BEFORE_VANILLA.register(b -> {
+                    packs_only.clearResources();
+                    packs_only.addTag(IdentifiedTagBuilder.createBlock(FabricMineableTags.SHEARS_MINEABLE).add(new Identifier(namespace,id)));
+                    b.add(packs_only);
+                });
+
+            } else if (Objects.equals(TOOL, "NULL") || Objects.equals(TOOL, "null") || Objects.equals(TOOL, "EMPTY") || Objects.equals(TOOL, "empty")) {
+
+            } else {
+
+            }
+    }
+}

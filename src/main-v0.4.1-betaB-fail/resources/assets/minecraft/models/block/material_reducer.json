@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "minecraft:block/material_reducer_bottom",
+    "east": "minecraft:block/material_reducer_side",
+    "north": "minecraft:block/material_reducer_front",
+    "particle": "minecraft:block/material_reducer_front",
+    "south": "minecraft:block/material_reducer_side",
+    "up": "minecraft:block/material_reducer_top",
+    "west": "minecraft:block/material_reducer_side"
+  }
+}

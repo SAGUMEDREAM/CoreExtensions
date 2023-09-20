@@ -48,7 +48,26 @@ repositories {
 	
 	maven { url 'https://maven.frohnmeyer-wds.de/artifacts' }
 
-	
+    maven {
+        url 'https://repo.opencollab.dev/maven-snapshots'
+        mavenContent {
+            snapshotsOnly()
+        }
+    }
+    maven {
+        url 'https://repo.opencollab.dev/maven-releases'
+        mavenContent {
+            releasesOnly()
+        }
+    }
+
+	maven {
+		url "https://maven.theepicblock.nl"
+		content { includeGroup("nl.theepicblock") }
+	}
+
+	maven { url 'https://maven.nucleoid.xyz' } // You should have it
+
 	//flatDir { dir "D:/Gradle/Fabric1.20.1/dir" }
 }
 
@@ -105,7 +124,14 @@ dependencies {
 	//modImplementation files('dir/midnightlib-fabric-1.2.1-sources.jar')
 	implementation 'com.google.code.gson:gson:2.8.8'
 	
-	
+	compileOnly 'org.geysermc.geyser:api:2.1.1-SNAPSHOT'
+
+	implementation files('dir/PolyMc-5.3.3+1.20-sources.jar')
+	modImplementation files('dir/PolyMc-5.3.3+1.20.jar')
+	implementation files('dir/resource-locator-api-0.5.0+1.20.1-sources.jar')
+	modImplementation files('dir/resource-locator-api-0.5.0+1.20.1.jar')
+
+	modImplementation include("eu.pb4:polymer-core:0.5.15+1.20.1")
 	
 }
 
