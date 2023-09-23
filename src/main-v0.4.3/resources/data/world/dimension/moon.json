@@ -1,0 +1,12 @@
+{
+  "generator": {
+    "type": "minecraft:noise",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "seed": 286956243,
+      "biome": "world:moon"
+    },
+    "settings": "world:moon"
+  },
+  "type": "minecraft:the_end"
+}

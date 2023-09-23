@@ -69,6 +69,8 @@ repositories {
 	maven { url 'https://maven.nucleoid.xyz' } // You should have it
 
 	//flatDir { dir "D:/Gradle/Fabric1.20.1/dir" }
+	maven { url = "https://mvn.devos.one/snapshots/" }
+
 }
 
 loom {
@@ -132,6 +134,12 @@ dependencies {
 	modImplementation files('dir/resource-locator-api-0.5.0+1.20.1.jar')
 
 	modImplementation include("eu.pb4:polymer-core:0.5.15+1.20.1")
+
+
+
+	//modImplementation(include("com.tterrag.registrate_fabric:Registrate:${project.registrate_version}"))
+
+	//modImplementation(include("io.github.fabricators_of_create.Porting-Lib:<module>:<version>"))
 	
 }
 

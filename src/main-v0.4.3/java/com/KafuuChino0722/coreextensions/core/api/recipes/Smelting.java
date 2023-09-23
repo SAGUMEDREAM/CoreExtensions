@@ -1,0 +1,30 @@
+package com.KafuuChino0722.coreextensions.core.api.recipes;
+
+import net.minecraft.data.server.recipe.CookingRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
+import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.book.CraftingRecipeCategory;
+import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
+import pers.solid.brrp.v1.api.RuntimeResourcePack;
+import pers.solid.brrp.v1.fabric.api.RRPCallback;
+
+import static com.KafuuChino0722.coreextensions.CoreManager.respacks;
+
+public class Smelting {
+    public static void generate(String name, String namespace, String id, String input, String result, RecipeCategory category,double experience,int cookingTime) {
+
+            respacks.addRecipeAndAdvancement(new Identifier(namespace, id),
+                    CookingRecipeJsonBuilder
+                            .createSmelting(Ingredient.ofItems(Registries.ITEM.get(new Identifier(input))),
+                                    category,
+                                    Registries.ITEM.get(new Identifier(result)),
+                                    (float) experience,
+                                    cookingTime)
+                            .setCustomRecipeCategory("event")
+                            .criterionFromItem(Registries.ITEM.get(new Identifier(result))));
+
+    }
+}

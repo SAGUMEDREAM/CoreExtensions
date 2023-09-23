@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:netherreactor",
+    "minecraft:powered_netherreactor",
+    "minecraft:glowing_obsidian",
+    "minecraft:client_request_placeholder_block",
+    "minecraft:usb_charger",
+    "minecraft:ant",
+    "minecraft:cursor",
+    "minecraft:netherite_stairs",
+    "minecraft:cheese",
+    "minecraft:stone_cutter",
+    "minecraft:lunar_stone_bricks",
+    "minecraft:element_constructor",
+    "minecraft:compound_creator",
+    "minecraft:lab_table",
+    "minecraft:chemistry_table"
+  ]
+}
