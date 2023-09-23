@@ -22,6 +22,7 @@ Hello, do you want to make a minecraft mod without learning JAVA? Yes, this is a
 * GeyserMC-Fabric
 ## Download Link
 * https://modrinth.com/mod/coreextensions/versions
+* https://www.mcmod.cn/class/12135.html
 
 # 核心扩展
 你好，想不用学JAVA就做MOD吗？ 是的，这是一个允许通过 YAML 语法向游戏添加自定义内容（包括物品、方块、工具、武器、合成配方、创造模式物品组和村民等）的 MOD
@@ -47,3 +48,4 @@ Hello, do you want to make a minecraft mod without learning JAVA? Yes, this is a
 * GeyserMC-Fabric
 ## 下载地址
 * https://modrinth.com/mod/coreextensions/versions
+* https://www.mcmod.cn/class/12135.html
