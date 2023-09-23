@@ -1,5 +1,5 @@
 # CoreExtensions
-Hello, do you want to make a MOD without learning JAVA? Yes, this is a MOD that allows adding custom content (including items, blocks, tools, weapons, recipes, itemgroup, villagers) to the game through YAML syntax
+Hello, do you want to make a minecraft mod without learning JAVA? Yes, this is a MOD that allows adding custom content (including items, blocks, tools, weapons, recipes, itemgroup, villagers) to the game through YAML syntax
 ## GitBook Wiki
 * https://otomads-cloud.gitbook.io/coreextension-docs-page-chinese/
 * https://otomads-cloud.gitbook.io/coreextension-docs-page-englishver/
