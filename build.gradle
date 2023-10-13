@@ -86,6 +86,7 @@ loom {
 			runDir "build/datagen"
 		}
 	}
+	accessWidenerPath = file("src/main/resources/cex.accesswidener")
 }
 
 // Add the generated resources to the main source set
@@ -115,7 +116,10 @@ dependencies {
 
 	modImplementation 'net.kyrptonaught:customportalapi:0.0.1-beta64-1.20'
 	include 'net.kyrptonaught:customportalapi:0.0.1-beta64-1.20'
-	implementation 'org.yaml:snakeyaml:1.29'
+	implementation 'org.yaml:snakeyaml:1.33'
+	include 'org.yaml:snakeyaml:1.33'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
+	include 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
 	modImplementation("net.devtech:arrp:0.8.0")
 	modImplementation "pers.solid:brrp-fabric:1.0.1-1.20.1"
 	
@@ -133,9 +137,7 @@ dependencies {
 	implementation files('dir/resource-locator-api-0.5.0+1.20.1-sources.jar')
 	modImplementation files('dir/resource-locator-api-0.5.0+1.20.1.jar')
 
-	modImplementation include("eu.pb4:polymer-core:0.5.15+1.20.1")
-
-
+	modImplementation ("eu.pb4:polymer-core:0.5.15+1.20.1")
 
 	//modImplementation(include("com.tterrag.registrate_fabric:Registrate:${project.registrate_version}"))
 

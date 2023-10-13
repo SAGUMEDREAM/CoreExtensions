@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "world:lunarcity",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 800,
+    "separation": 700,
+    "salt": 1646207470
+  }
+}

@@ -1,0 +1,25 @@
+accessWidener   v1      named
+# Classes
+extendable      class   net/minecraft/enchantment/EnchantmentTarget
+#accessible class net/minecraft/client/render/model/WeightedBakedModel$Entry
+#extendable class net/minecraft/util/profiler/ProfilerTiming
+# Methods
+accessible method net/minecraft/registry/Registries init ()V
+accessible method net/minecraft/registry/Registries freezeRegistries ()V
+accessible method net/minecraft/registry/Registries validate (Lnet/minecraft/registry/Registry;)V
+accessible method net/minecraft/loot/LootTables register (Ljava/lang/String;)Lnet/minecraft/util/Identifier;
+accessible method net/minecraft/loot/LootTables registerLootTable (Lnet/minecraft/util/Identifier;)Lnet/minecraft/util/Identifier;
+accessible method net/minecraft/registry/SimpleRegistry assertNotFrozen ()V
+accessible method net/minecraft/registry/SimpleRegistry assertNotFrozen (Lnet/minecraft/registry/RegistryKey;)V
+accessible method net/minecraft/Bootstrap setOutputStreams ()V
+accessible method net/minecraft/util/Identifier validateNamespace (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+accessible method net/minecraft/util/Identifier validatePath (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+# Fields
+accessible field net/minecraft/loot/LootTables LOOT_TABLES Ljava/util/Set;
+accessible field net/minecraft/loot/LootTables LOOT_TABLES_READ_ONLY Ljava/util/Set;
+accessible field net/minecraft/registry/SimpleRegistry intrusiveValueToEntry Ljava/util/Map;
+accessible field net/minecraft/registry/SimpleRegistry frozen Z
+accessible field net/minecraft/Bootstrap initialized Z
+accessible field net/minecraft/client/MinecraftClient session Lnet/minecraft/client/util/Session;
+
