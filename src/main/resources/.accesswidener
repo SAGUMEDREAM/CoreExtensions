@@ -1,0 +1,34 @@
+accessWidener   v1      named
+# Classes
+extendable class net/minecraft/enchantment/EnchantmentTarget
+accessible class net/minecraft/registry/tag/TagGroupLoader$TagDependencies
+accessible	class	net/minecraft/world/chunk/PalettedContainer$Data
+accessible	class	net/minecraft/server/world/ThreadedAnvilChunkStorage$EntityTracker
+
+#accessible class net/minecraft/client/render/model/WeightedBakedModel$Entry
+#extendable class net/minecraft/util/profiler/ProfilerTiming
+# Methods
+accessible method net/minecraft/registry/Registries init ()V
+accessible method net/minecraft/registry/Registries freezeRegistries ()V
+accessible method net/minecraft/registry/Registries validate (Lnet/minecraft/registry/Registry;)V
+accessible method net/minecraft/loot/LootTables register (Ljava/lang/String;)Lnet/minecraft/util/Identifier;
+accessible method net/minecraft/loot/LootTables registerLootTable (Lnet/minecraft/util/Identifier;)Lnet/minecraft/util/Identifier;
+accessible method net/minecraft/registry/SimpleRegistry assertNotFrozen ()V
+accessible method net/minecraft/registry/SimpleRegistry assertNotFrozen (Lnet/minecraft/registry/RegistryKey;)V
+accessible method net/minecraft/Bootstrap setOutputStreams ()V
+accessible method net/minecraft/util/Identifier validateNamespace (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+accessible method net/minecraft/util/Identifier validatePath (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+extendable	method	net/minecraft/entity/Entity	setRemoved	(Lnet/minecraft/entity/Entity$RemovalReason;)V
+
+# Fields
+accessible field net/minecraft/loot/LootTables LOOT_TABLES Ljava/util/Set;
+accessible field net/minecraft/loot/LootTables LOOT_TABLES_READ_ONLY Ljava/util/Set;
+accessible field net/minecraft/registry/SimpleRegistry intrusiveValueToEntry Ljava/util/Map;
+accessible field net/minecraft/registry/SimpleRegistry frozen Z
+accessible field net/minecraft/Bootstrap initialized Z
+accessible field net/minecraft/server/PlayerManager players Ljava/util/List;
+accessible field net/minecraft/server/PlayerManager playerMap Ljava/util/Map;
+accessible field net/minecraft/network/ClientConnection address Ljava/net/SocketAddress;
+accessible field net/minecraft/network/ClientConnection channel Lio/netty/channel/Channel;
+accessible field net/minecraft/client/MinecraftClient session Lnet/minecraft/client/util/Session;
+

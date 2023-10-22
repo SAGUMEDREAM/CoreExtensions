@@ -86,7 +86,7 @@ loom {
 			runDir "build/datagen"
 		}
 	}
-	accessWidenerPath = file("src/main/resources/cex.accesswidener")
+	accessWidenerPath = file("src/main/resources/.accesswidener")
 }
 
 // Add the generated resources to the main source set
@@ -120,6 +120,10 @@ dependencies {
 	include 'org.yaml:snakeyaml:1.33'
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
 	include 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
+	implementation 'io.netty:netty-codec-http:4.1.63.Final'
+	include 'io.netty:netty-codec-http:4.1.63.Final'
+	//implementation 'io.netty:netty-codec-http-websocket:4.1.63.Final'
+	//include 'io.netty:netty-codec-http-websocket:4.1.63.Final'
 	modImplementation("net.devtech:arrp:0.8.0")
 	modImplementation "pers.solid:brrp-fabric:1.0.1-1.20.1"
 	
@@ -130,7 +134,7 @@ dependencies {
 	//modImplementation files('dir/midnightlib-fabric-1.2.1-sources.jar')
 	implementation 'com.google.code.gson:gson:2.8.8'
 	
-	compileOnly 'org.geysermc.geyser:api:2.1.1-SNAPSHOT'
+	//compileOnly 'org.geysermc.geyser:api:2.1.1-SNAPSHOT'
 
 	implementation files('dir/PolyMc-5.3.3+1.20-sources.jar')
 	modImplementation files('dir/PolyMc-5.3.3+1.20.jar')
