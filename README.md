@@ -23,7 +23,8 @@ Hello, do you want to make a minecraft mod without learning JAVA? Yes, this is a
 ## Download Link
 * https://modrinth.com/mod/coreextensions/versions
 * https://www.mcmod.cn/class/12135.html
-
+# About wiki update
+* Due to academic issues, it is impossible to update the wiki's new content and changes in a timely manner. Generally, the content of the sample package is just enough for the wiki to learn to use. For some changes, it is recommended to check the update log.
 # 核心扩展
 你好，想不用学JAVA就做MOD吗？ 是的，这是一个允许通过 YAML 语法向游戏添加自定义内容（包括物品、方块、工具、武器、合成配方、创造模式物品组和村民等）的 MOD
 ## GitBook 维基
@@ -49,3 +50,5 @@ Hello, do you want to make a minecraft mod without learning JAVA? Yes, this is a
 ## 下载地址
 * https://modrinth.com/mod/coreextensions/versions
 * https://www.mcmod.cn/class/12135.html
+## 关于维基更新问题
+* 由于学业问题，无法及时更新维基的新内容和更改，一般示例包的内容凑合维基就能学会使用了，一些更改建议查询更新日志
