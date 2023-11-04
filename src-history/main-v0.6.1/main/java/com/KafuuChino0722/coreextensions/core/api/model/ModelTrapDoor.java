@@ -1,0 +1,43 @@
+package com.KafuuChino0722.coreextensions.core.api.model;
+
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.data.client.BlockStateModelGenerator;
+import net.minecraft.data.client.Models;
+import net.minecraft.data.client.TextureKey;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
+import pers.solid.brrp.v1.model.ModelJsonBuilder;
+
+import static com.KafuuChino0722.coreextensions.CoreManager.respacks;
+
+@Environment(EnvType.CLIENT)
+public class ModelTrapDoor {
+    public static void generate(String namespace, String id) {
+
+            respacks.addBlockState(new Identifier(namespace, id),
+                    BlockStateModelGenerator.createTrapdoorBlockState(
+                            Registries.BLOCK.get(new Identifier(namespace, id)),
+                            new Identifier(namespace, "block/"+id+"_top"),
+                            new Identifier(namespace, "block/"+id+"_bottom"),
+                            new Identifier(namespace, "block/"+id+"_open")
+                    ));
+
+            respacks.addModel(new Identifier(namespace, "item/"+id),
+                    ModelJsonBuilder.create(Models.TEMPLATE_TRAPDOOR_TOP)
+                            .parent(namespace, "block/"+id+"_bottom"));
+
+            respacks.addModel(new Identifier(namespace, "block/"+id+"_bottom"),
+                    ModelJsonBuilder.create(Models.TEMPLATE_TRAPDOOR_BOTTOM)
+                            .addTexture(TextureKey.TEXTURE, new Identifier(namespace, "block/"+id)));
+
+            respacks.addModel(new Identifier(namespace, "block/"+id+"_open"),
+                    ModelJsonBuilder.create(Models.TEMPLATE_TRAPDOOR_OPEN)
+                            .addTexture(TextureKey.TEXTURE, new Identifier(namespace, "block/"+id)));
+
+            respacks.addModel(new Identifier(namespace, "block/"+id+"_top"),
+                    ModelJsonBuilder.create(Models.TEMPLATE_TRAPDOOR_TOP)
+                            .addTexture(TextureKey.TEXTURE, new Identifier(namespace, "block/"+id)));
+
+    }
+}

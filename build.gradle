@@ -143,6 +143,9 @@ dependencies {
 
 	modImplementation ("eu.pb4:polymer-core:0.5.15+1.20.1")
 
+	implementation ("com.github.DM-Earth:Tags-Binder:${project.tags_binder_version}")
+	include("com.github.DM-Earth:Tags-Binder:${project.tags_binder_version}")
+
 	//modImplementation(include("com.tterrag.registrate_fabric:Registrate:${project.registrate_version}"))
 
 	//modImplementation(include("io.github.fabricators_of_create.Porting-Lib:<module>:<version>"))

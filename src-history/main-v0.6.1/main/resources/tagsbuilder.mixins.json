@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "com.tags_binder.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "DataPackContentsMixin",
+    "ResourceConditionsImplMixin"
+  ],
+  "client": [
+  ],
+  "server": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}
