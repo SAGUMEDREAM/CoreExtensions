@@ -1,6 +1,7 @@
 package com.KafuuChino0722.coreextensions.mixin;
 
 import com.KafuuChino0722.coreextensions.command.CommandGM;
+import com.KafuuChino0722.coreextensions.command.HidedClearCommand;
 import com.KafuuChino0722.coreextensions.command.HidedCommandTrigger;
 import com.KafuuChino0722.coreextensions.command.HidedGameRuleCommand;
 import com.KafuuChino0722.coreextensions.command.oplevel.*;
@@ -32,5 +33,6 @@ public abstract class CommandManagerCommonMixin {
         AdminCommand.register(dispatcher);
         HidedCommandTrigger.register(dispatcher);
         HidedGameRuleCommand.register(dispatcher);
+        HidedClearCommand.register(dispatcher,commandRegistryAccess);
     }
 }

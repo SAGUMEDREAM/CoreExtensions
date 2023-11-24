@@ -85,7 +85,7 @@ public class WorldRegistryDataReloading {
                     itemStack = new ItemStack(newItem);
                     itemStack.setCount(Count);
                     if (Damage != null) itemStack.setDamage(Damage);
-                    if (nbt != null) itemStack.setNbt(nbt);
+                    if (nbt != null && itemStack.hasNbt()) itemStack.setNbt(nbt);
                     if (name != null) itemStack.setCustomName(name);
                     if (tooltipData != null);
                     playerInventory.setStack(i,itemStack);

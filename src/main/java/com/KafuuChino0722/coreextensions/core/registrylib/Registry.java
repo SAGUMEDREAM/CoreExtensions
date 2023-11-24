@@ -171,13 +171,13 @@ public class Registry {
     /**
      * Register spawn egg without entity.
      * @param item
-     * @param namespace
+     * @param id
      * @return
      * @param <I>
      */
-    public static <I extends Item> I registerEgg(I item, Identifier name) {
+    public static <I extends Item> I registerEgg(I item, Identifier id) {
         if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
-            return net.minecraft.registry.Registry.register(Registries.ITEM, name, item);
+            return net.minecraft.registry.Registry.register(Registries.ITEM, id, item);
         }
         return null;
     }

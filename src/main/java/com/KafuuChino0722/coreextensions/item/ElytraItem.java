@@ -3,8 +3,10 @@
  */
 package com.KafuuChino0722.coreextensions.item;
 
+import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Equipment;
@@ -17,10 +19,11 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 
 public class ElytraItem
 extends Item
-implements Equipment {
+implements Equipment, FabricElytraItem {
 
     public final Item repairMaterialItem;
 
@@ -52,6 +55,31 @@ implements Equipment {
     @Override
     public EquipmentSlot getSlotType() {
         return EquipmentSlot.CHEST;
+    }
+
+    @Override
+    public boolean useCustomElytra(LivingEntity entity, ItemStack chestStack, boolean tickElytra) {
+        if (net.minecraft.item.ElytraItem.isUsable(chestStack)) {
+            if (tickElytra) {
+                doVanillaElytraTick(entity, chestStack);
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+    @Override
+    public void doVanillaElytraTick(LivingEntity entity, ItemStack chestStack) {
+        int nextRoll = entity.getRoll() + 1;
+
+        if (!entity.getWorld().isClient && nextRoll % 10 == 0) {
+            if ((nextRoll / 10) % 2 == 0) {
+                chestStack.damage(1, entity, p -> p.sendEquipmentBreakStatus(EquipmentSlot.CHEST));
+            }
+
+            entity.emitGameEvent(GameEvent.ELYTRA_GLIDE);
+        }
     }
 }
 

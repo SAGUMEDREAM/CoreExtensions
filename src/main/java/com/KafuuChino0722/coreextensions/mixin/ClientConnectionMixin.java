@@ -9,8 +9,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientConnection.class)
 public class ClientConnectionMixin {
-    @Inject(method = "exceptionCaught", at = @At("HEAD"))
-    private void onTimeout(ChannelHandlerContext context, Throwable ex, CallbackInfo ci) {
 
+    @Inject(method = "exceptionCaught", at = @At("HEAD")/*, cancellable = true*/)
+    private void onTimeout(ChannelHandlerContext context, Throwable ex, CallbackInfo ci) {
+        //ci.cancel();
     }
 }

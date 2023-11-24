@@ -1,5 +1,6 @@
 package com.KafuuChino0722.coreextensions.core.registry;
 
+import com.KafuuChino0722.coreextensions.client.BoatLayer;
 import com.KafuuChino0722.coreextensions.core.api.ItemGroupsContents;
 import com.KafuuChino0722.coreextensions.core.api.MethodRarity;
 import com.KafuuChino0722.coreextensions.core.api.ModelBuilder;
@@ -9,12 +10,18 @@ import com.KafuuChino0722.coreextensions.item.ClickItem;
 import com.KafuuChino0722.coreextensions.core.api.IOFileManager;
 import com.KafuuChino0722.coreextensions.util.ReturnMessage;
 import com.KafuuChino0722.coreextensions.util.setRegistry;
+import com.terraformersmc.terraform.boat.api.TerraformBoatType;
+import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
+import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.registry.VillagerInteractionRegistries;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -25,6 +32,7 @@ import java.util.Map;
 
 import static com.KafuuChino0722.coreextensions.CoreManager.*;
 import static com.KafuuChino0722.coreextensions.core.registry.Registries.AllowExistingReloading;
+import static com.KafuuChino0722.coreextensions.core.registry.Registries.registriesCount;
 import static net.fabricmc.api.EnvType.CLIENT;
 
 public class ItemRegistry {
@@ -222,6 +230,29 @@ public class ItemRegistry {
                             }
                             ModelTypes = ModelBuilder.Item.Types.GENERATE;
                         }
+                        case "boat" -> {
+                            if(registriesCount<1) {
+                                Identifier BOAT_ID = new Identifier(namespace, id);
+                                Identifier CHEST_BOAT_ID = new Identifier(namespace, "chest_" + id);
+
+                                RegistryKey<TerraformBoatType> BOAT_KEY = TerraformBoatTypeRegistry.createKey(BOAT_ID);
+
+                                Item CHESTNUT_BOAT = TerraformBoatItemHelper.registerBoatItem(BOAT_ID, BOAT_KEY, false);
+                                Item CHESTNUT_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(CHEST_BOAT_ID, BOAT_KEY, true);
+
+                                TerraformBoatType chestnutBoat = new TerraformBoatType.Builder()
+                                        .item(CHESTNUT_BOAT)
+                                        .chestItem(CHESTNUT_CHEST_BOAT)
+                                        .planks(Blocks.OAK_PLANKS.asItem())
+                                        .build();
+
+                                Registry.register(TerraformBoatTypeRegistry.INSTANCE, BOAT_KEY, chestnutBoat);
+                                if(FabricLoader.getInstance().getEnvironmentType() == CLIENT) BoatLayer.register(BOAT_ID);
+                                provider.add("item." +namespace +"."+"chest_"+id, name);
+                                ItemGroupsContents.load(namespace,id,properties);
+                                ModelTypes = ModelBuilder.Item.Types.BOAT;
+                            }
+                        }
                         case "template" -> {
                             String TemplateIdentifier = properties.containsKey("template") ? (String) properties.get("template") : null;
                             Template.Item(namespace,id,TemplateIdentifier);
@@ -249,6 +280,7 @@ public class ItemRegistry {
                                     ReturnMessage.ItemYMLRegister(name, namespace, id);
                                 }
                             }
+                            if(types.equalsIgnoreCase("food")) VillagerInteractionRegistries.registerFood(ItemType,1);
                         }
 
                         boolean piglinLoved = (boolean) properties.getOrDefault("piglinLoved",false);

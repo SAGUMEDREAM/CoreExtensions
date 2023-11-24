@@ -278,7 +278,7 @@ public class PlantRegistry {
                 setupRenderLayer.set(block);
             }
             if(generate) {
-                ModelBuilder.Block.getModel(namespace,id, ModelBuilder.Block.Types.FRUITBUSH);
+                ModelBuilder.Block.getModel(namespace,id, ModelBuilder.Block.Types.FRUIT_BUSH);
             }
 
             Tags.generateFruitBush(namespace,id);

@@ -117,6 +117,22 @@ public class MethodLootBuilder {
         RequireLevel(namespace, id, blockData, properties);
     }
 
+    public static void addSign(String namespace, String id, Map<String, Object> blockData, Map<String, Object> properties) {
+
+        Identifier[] z = {
+                new Identifier(namespace, id+"_"+"standing"),
+                new Identifier(namespace, id+"_"+"wall"),
+                new Identifier(namespace, id+"_"+"hanging"),
+                new Identifier(namespace, id+"_"+"wall_hanging")
+        };
+
+        for (Identifier e : z) {
+            respacks.addLootTable(Registries.BLOCK.get(e).getLootTableId(), new VanillaBlockLootTableGenerator().drops(Registries.ITEM.get(new Identifier(namespace, id))).type(LootContextTypes.BLOCK).randomSequenceId(new Identifier(namespace,"blocks/"+id)));
+            Require(e.getNamespace(), e.getPath(), blockData, properties);
+            RequireLevel(e.getNamespace(), e.getPath(), blockData, properties);
+        }
+    }
+
     public static void addDrop(String namespace, String id, Map<String, Object> blockData, Map<String, Object> properties) {
 
         respacks.addLootTable(Registries.BLOCK.get(new Identifier(namespace, id)).getLootTableId(), new VanillaBlockLootTableGenerator().drops(Registries.BLOCK.get(new Identifier(namespace, id))).type(LootContextTypes.BLOCK).randomSequenceId(new Identifier(namespace,"blocks/"+id)));

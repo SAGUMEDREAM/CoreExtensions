@@ -68,6 +68,12 @@ public class TagsAdder {
         respacks.addTag(TAG_PIGLIN_FOOD);
         respacks.addTag(TAG_SNIFFER_FOOD);
         respacks.addTag(TAG_PIGLIN_LOVED);
+
+        respacks.addTag(TAG_SIGNS_ITEM);
+        respacks.addTag(TAG_HANGING_SIGNS_ITEM);
+        respacks.addTag(TAG_STANDING_SIGNS_BLOCK);
+        respacks.addTag(TAG_WALL_HANGING_SIGNS_BLOCK);
+
         respacks.addTag(TAG_VILLAGER_PLANTABLE_SEEDS);
 
         respacks.addTag(TAG_PAINTINGS);

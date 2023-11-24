@@ -38,7 +38,7 @@ public class Info {
     }
 
     public static void error(String key) {
-        ERROR.info(key);
+        ERROR.error(key);
     }
 
     public static void custom(String key, String id) {

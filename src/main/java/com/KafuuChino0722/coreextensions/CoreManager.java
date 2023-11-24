@@ -70,6 +70,11 @@ public class CoreManager {
     public static final IdentifiedTagBuilder<Block> TAG_FLOWER_POTS_BLOCK = IdentifiedTagBuilder.createBlock(BlockTags.FLOWER_POTS);
     public static final IdentifiedTagBuilder<Block> TAG_BEE_GROWABLES_BLOCK = IdentifiedTagBuilder.createBlock(BlockTags.BEE_GROWABLES);
 
+    public static final IdentifiedTagBuilder<Item> TAG_HANGING_SIGNS_ITEM = IdentifiedTagBuilder.createItem(ItemTags.HANGING_SIGNS);
+    public static final IdentifiedTagBuilder<Item> TAG_SIGNS_ITEM = IdentifiedTagBuilder.createItem(ItemTags.SIGNS);
+    public static final IdentifiedTagBuilder<Block> TAG_WALL_HANGING_SIGNS_BLOCK = IdentifiedTagBuilder.createBlock(BlockTags.WALL_HANGING_SIGNS);
+    public static final IdentifiedTagBuilder<Block> TAG_STANDING_SIGNS_BLOCK = IdentifiedTagBuilder.createBlock(BlockTags.STANDING_SIGNS);
+
     public static final IdentifiedTagBuilder<Item> TAG_WOOL_CARPETS_ITEM = IdentifiedTagBuilder.createItem(ItemTags.WOOL_CARPETS);
     public static final IdentifiedTagBuilder<Block> TAG_WOOL_CARPETS_BLOCK = IdentifiedTagBuilder.createBlock(BlockTags.WOOL_CARPETS);
     public static final IdentifiedTagBuilder<Item> TAG_GLASS_ITEM = IdentifiedTagBuilder.createItem(ItemTags.SMELTS_TO_GLASS);
@@ -133,6 +138,9 @@ public class CoreManager {
             ServerTickEvents.START_SERVER_TICK.register(server -> {
                 WorldRegistryDataReloading.server = server;
             });
+            ServerTickEvents.END_SERVER_TICK.register(server -> {
+                WorldRegistryDataReloading.server = server;
+            });
 
             respacks.setDisplayName(Text.translatable("brrp.configScreen.title"));
             respacks.setDescription(Text.translatable("brrp.pack.defaultName","[mc:packs] CoreExtensions"));
@@ -187,5 +195,8 @@ public class CoreManager {
         } else {
             Info.create("CoreManager Disabled!if the setting is not you changing,please check your config/coreconfig.yml");
         }
+
+        Loader.start();
+
     }
 }

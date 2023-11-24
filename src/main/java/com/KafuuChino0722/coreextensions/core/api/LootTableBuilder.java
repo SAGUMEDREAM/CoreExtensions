@@ -74,6 +74,9 @@ public class LootTableBuilder {
             case "glass_pane","glasspane" -> {
                 MethodLootBuilder.addDropWithSilkTouch(namespace, id, blockData, properties);
             }
+            case "sign" -> {
+                MethodLootBuilder.addSign(namespace, id, blockData, properties);
+            }
         }
     }
 }

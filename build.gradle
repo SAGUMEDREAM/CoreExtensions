@@ -71,6 +71,11 @@ repositories {
 	//flatDir { dir "D:/Gradle/Fabric1.20.1/dir" }
 	maven { url = "https://mvn.devos.one/snapshots/" }
 
+	maven {
+      name = 'TerraformersMC'
+      url = 'https://maven.terraformersmc.com/'
+    }
+
 }
 
 loom {
@@ -133,23 +138,33 @@ dependencies {
     //include files('dir/OpenLoader-CEFabric-1.20.1-19.0.2.jar')
 	//modImplementation files('dir/midnightlib-fabric-1.2.1-sources.jar')
 	implementation 'com.google.code.gson:gson:2.8.8'
-	
+
 	//compileOnly 'org.geysermc.geyser:api:2.1.1-SNAPSHOT'
 
-	implementation files('dir/PolyMc-5.3.3+1.20-sources.jar')
-	modImplementation files('dir/PolyMc-5.3.3+1.20.jar')
+	implementation files('dir/PolyMc-5.4.0+1.20-sources.jar')
+	modImplementation files('dir/PolyMc-5.4.0+1.20.jar')
 	implementation files('dir/resource-locator-api-0.5.0+1.20.1-sources.jar')
 	modImplementation files('dir/resource-locator-api-0.5.0+1.20.1.jar')
 
 	modImplementation ("eu.pb4:polymer-core:0.5.15+1.20.1")
 
-	implementation ("com.github.DM-Earth:Tags-Binder:${project.tags_binder_version}")
-	include("com.github.DM-Earth:Tags-Binder:${project.tags_binder_version}")
+	//implementation ("com.github.DM-Earth:Tags-Binder:${project.tags_binder_version}")
+	//include("com.github.DM-Earth:Tags-Binder:${project.tags_binder_version}")
 
 	//modImplementation(include("com.tterrag.registrate_fabric:Registrate:${project.registrate_version}"))
 
 	//modImplementation(include("io.github.fabricators_of_create.Porting-Lib:<module>:<version>"))
 	
+	modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.1"
+	modImplementation "com.terraformersmc.terraform-api:terraform-shapes-api-v1:7.0.1"
+	modImplementation "com.terraformersmc.terraform-api:terraform-tree-api-v1:7.0.1"
+	modImplementation "com.terraformersmc.terraform-api:terraform-surfaces-api-v1:7.0.1"
+	modImplementation "com.terraformersmc.terraform-api:terraform-biome-remapper-api-v1:7.0.1"
+	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.1"
+	include "com.terraformersmc.terraform-api:terraform-shapes-api-v1:7.0.1"
+	include "com.terraformersmc.terraform-api:terraform-tree-api-v1:7.0.1"
+	include "com.terraformersmc.terraform-api:terraform-surfaces-api-v1:7.0.1"
+	include "com.terraformersmc.terraform-api:terraform-biome-remapper-api-v1:7.0.1"
 }
 
 processResources {

@@ -13,7 +13,7 @@ public class ModelBuilder {
         public enum Types {
             CUBE_ALL,
             CUBE,
-            CUBECOLUMN,
+            CUBE_COLUMN,
             STAIRS,
             SLAB,
             FENCE,
@@ -29,13 +29,14 @@ public class ModelBuilder {
             PLANTS,
             HIGH_PLANTS,
             SEEDS,
-            FRUITBUSH,
+            FRUIT_BUSH,
             BED,
             CHEST,
-            GLASSPANE,
+            GLASS_PANE,
             CARPETS,
             CROP,
-            HIGHCROP;
+            HIGH_CROP,
+            SIGN;
         }
 
 
@@ -43,8 +44,8 @@ public class ModelBuilder {
             if (FabricLoader.getInstance().getEnvironmentType() == CLIENT) {
                 if (ModelType == Types.CUBE_ALL) ModelCubeALL.generate(namespace, id);
                 if (ModelType == Types.CUBE) ModelCube.generate(namespace, id);
-                if (ModelType == Types.CUBECOLUMN) ModelCubeTreeLog.generate(namespace, id);
-                if (ModelType == Types.CUBECOLUMN) ModelCubeTreeLog.generate(namespace, "stripped_"+id);
+                if (ModelType == Types.CUBE_COLUMN) ModelCubeTreeLog.generate(namespace, id);
+                if (ModelType == Types.CUBE_COLUMN) ModelCubeTreeLog.generate(namespace, "stripped_"+id);
                 if (ModelType == Types.STAIRS) ModelStair.generate(namespace, id);
                 if (ModelType == Types.SLAB) ModelSlab.generate(namespace, id);
                 if (ModelType == Types.FENCE) ModelFence.generate(namespace, id);
@@ -60,18 +61,19 @@ public class ModelBuilder {
                 if (ModelType == Types.PLANTS) ModelPlants.generate(namespace, id);
                 if (ModelType == Types.HIGH_PLANTS) ModelHighPlants.generate(namespace, id);
                 if (ModelType == Types.SEEDS) ModelPlants.generate(namespace, id);
-                if (ModelType == Types.FRUITBUSH) ModelFruitBush.generate(namespace, id);
+                if (ModelType == Types.FRUIT_BUSH) ModelFruitBush.generate(namespace, id);
                 if (ModelType == Types.BED) ModelBed.generate(namespace, id);
                 if (ModelType == Types.CHEST) ModelChest.generate(namespace, id);
-                if (ModelType == Types.GLASSPANE) ModelGlassPane.generate(namespace, id);
+                if (ModelType == Types.GLASS_PANE) ModelGlassPane.generate(namespace, id);
                 if (ModelType == Types.CARPETS) ModelCarpet.generate(namespace, id);
+                if (ModelType == Types.SIGN) ModelSign.generate(namespace, id);
             }
         }
 
         public static void getModel(String namespace, String id, Types ModelType, int AGE) {
             if (FabricLoader.getInstance().getEnvironmentType() == CLIENT) {
                 if (ModelType == Types.CROP) ModelCrop.generate(namespace, id, AGE);
-                if (ModelType == Types.HIGHCROP) ModelHighCrop.generate(namespace, id, AGE);
+                if (ModelType == Types.HIGH_CROP) ModelHighCrop.generate(namespace, id, AGE);
             }
         }
     }
@@ -82,8 +84,9 @@ public class ModelBuilder {
             HANDHELD,
             SHIELD,
             ELYTRA,
-            BOW,
-            CROSSBOW;
+            BOAT,
+            CROSSBOW,
+            BOW;
         }
 
         public static void getModel(String namespace, String id, Item.Types ModelType) {
@@ -99,6 +102,8 @@ public class ModelBuilder {
                 if (ModelType == Types.CROSSBOW) ModelCrossBow.generate(namespace, id);
                 if (ModelType == Types.CROSSBOW)
                     ModelPredicateProvider.Types.create(Registries.ITEM.get(new Identifier(namespace, id)), ModelPredicateProvider.Types.CROSSBOW);
+                if (ModelType == Types.BOAT) ModelItem.generate(namespace, id);
+                if (ModelType == Types.BOAT) ModelItem.generate(namespace, "chest_"+id);
             }
         }
     }

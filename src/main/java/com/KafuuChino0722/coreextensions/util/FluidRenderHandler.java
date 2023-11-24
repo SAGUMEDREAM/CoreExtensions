@@ -10,43 +10,22 @@ import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 
 public class FluidRenderHandler {
-    public static class UnZip {
-        public static void set(String namespace, String id, int color) {
-            if(FabricLoader.getInstance().getEnvironmentType()==EnvType.CLIENT) {
-                FluidRenderHandlerRegistry.INSTANCE.register(
-                        //RegFluids.STILL_WATER, RegFluids.FLOWING_WATER
-                        Registries.FLUID.get((new Identifier(namespace,id))),
-                        Registries.FLUID.get((new Identifier(namespace,"flowing_"+id))),
-                        new SimpleFluidRenderHandler(
-                        new Identifier("block/water_still"),
-                        new Identifier("block/water_flow"),
-                        color
-                ));
-                BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
-                        //RegFluids.STILL_WATER, RegFluids.FLOWING_WATER
-                        Registries.FLUID.get((new Identifier(namespace,id))),
-                        Registries.FLUID.get((new Identifier(namespace,"flowing_"+id)))
-                        );
-            }
-        }
-    }
-
-    public static class Zip {
-        public static void set(String namespace, String id, int color) {
-            if(FabricLoader.getInstance().getEnvironmentType()==EnvType.CLIENT) {
-                FluidRenderHandlerRegistry.INSTANCE.register(
-                        //iZipFluids.STILL_WATER, iZipFluids.FLOWING_WATER
-                        Registries.FLUID.get((new Identifier(namespace,id))),
-                        Registries.FLUID.get((new Identifier(namespace,"flowing_"+id))),
-                        new SimpleFluidRenderHandler(
-                        new Identifier("block/water_still"),
-                        new Identifier("block/water_flow"),
-                        color
-                ));
-                BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
-                        Registries.FLUID.get((new Identifier(namespace,id))),
-                        Registries.FLUID.get((new Identifier(namespace,"flowing_"+id))));
-            }
+    public static void set(String namespace, String id, int color) {
+        if(FabricLoader.getInstance().getEnvironmentType()==EnvType.CLIENT) {
+            FluidRenderHandlerRegistry.INSTANCE.register(
+                    //RegFluids.STILL_WATER, RegFluids.FLOWING_WATER
+                    Registries.FLUID.get((new Identifier(namespace,id))),
+                    Registries.FLUID.get((new Identifier(namespace,"flowing_"+id))),
+                    new SimpleFluidRenderHandler(
+                            new Identifier("block/water_still"),
+                            new Identifier("block/water_flow"),
+                            color
+                    ));
+            BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
+                    //RegFluids.STILL_WATER, RegFluids.FLOWING_WATER
+                    Registries.FLUID.get((new Identifier(namespace,id))),
+                    Registries.FLUID.get((new Identifier(namespace,"flowing_"+id)))
+            );
         }
     }
 }

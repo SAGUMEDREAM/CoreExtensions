@@ -3,6 +3,7 @@ package com.KafuuChino0722.coreextensions.command;
 import com.KafuuChino0722.coreextensions.Config;
 import com.KafuuChino0722.coreextensions.CoreManager;
 import com.KafuuChino0722.coreextensions.network.VersionChecker;
+import com.KafuuChino0722.coreextensions.util.Info;
 import com.KafuuChino0722.coreextensions.util.Reference;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,9 +37,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static com.KafuuChino0722.coreextensions.util.Info.UPDATER;
 
@@ -70,7 +73,8 @@ public class CommandCoreExtensions {
                             .executes(Command::about))
                     .then((ArgumentBuilder<ServerCommandSource, ?>)CommandManager.literal("dump")
                             .then((ArgumentBuilder<ServerCommandSource, ?>)CommandManager.literal("resource").executes(CommandDataGen::run))
-                            .then((ArgumentBuilder<ServerCommandSource, ?>)CommandManager.literal("registey").executes(Command::dumpRegistry))
+                            .then((ArgumentBuilder<ServerCommandSource, ?>)CommandManager.literal("events").executes(Command::dumpEvents))
+                            .then((ArgumentBuilder<ServerCommandSource, ?>)CommandManager.literal("registry").executes(Command::dumpRegistry))
             ));
         }
     }
@@ -90,6 +94,11 @@ public class CommandCoreExtensions {
             context.getSource().sendFeedback(() -> Text.translatable("help.text.help.command").formatted(Formatting.RED), false);
             return 1;
         }
+
+        public static int dumpEvents(CommandContext<ServerCommandSource> context) {
+            return 0;
+        }
+
         public static int dumpRegistry(CommandContext<ServerCommandSource> context) {
             CommandManager commands = context.getSource().getServer().getCommandManager();
             CommandDispatcher<ServerCommandSource> disp = commands.getDispatcher();

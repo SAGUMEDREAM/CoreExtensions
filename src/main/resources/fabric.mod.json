@@ -19,6 +19,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"preLaunch": [
+			"com.KafuuChino0722.coreextensions.PreLaunch"
 		],
 		"main": [
 			"com.KafuuChino0722.coreextensions.Main"

@@ -32,6 +32,7 @@ public class CommandManager {
         register(CommandRepair::register);
         register(CommandEnderchest::register);
         register(CommandFakePlayer::register);
+        register(CommandBack::register);
         register(CommandNightvision::register);
         register(CommandHat::register);
         register(CommandWait::register);

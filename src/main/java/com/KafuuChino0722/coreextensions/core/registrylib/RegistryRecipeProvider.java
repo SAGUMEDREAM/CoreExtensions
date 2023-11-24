@@ -56,8 +56,9 @@ public class RegistryRecipeProvider {
                 .group("hoe").criterion(FabricRecipeProvider.hasItem(input),
                         FabricRecipeProvider.conditionsFromItem(input))
                 .offerTo(exporter);
-    }/**
-     * for making an Shovel recipe
+    }
+    /**
+     * for making a Shovel recipe
      * @param exporter the exporter
      * @param output the output that is the Shovel
      * @param input the material the Shovel is made up of (wood, stone, iron, gold, diamond, any modded material)

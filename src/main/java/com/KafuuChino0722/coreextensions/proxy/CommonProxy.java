@@ -13,6 +13,8 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 
+import java.util.concurrent.CompletableFuture;
+
 
 public class CommonProxy{
 
@@ -50,11 +52,15 @@ public class CommonProxy{
     }
 
     private static void onPlayerEnterWorld(ServerPlayerEntity player) {
-        if(Config.getConfigBoolean("CHECKING_FOR_UPDATE")) {
-            if(Reference.VERSION_ID < VersionChecker.getVersion()) {
-                player.sendMessage(Text.literal("[CoreExtensions] 发现新版本"), false);
-                player.sendMessage(Text.literal("[CoreExtensions] Found new version"), false);
+
+        CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+            if (Config.getConfigBoolean("CHECKING_FOR_UPDATE")) {
+                if (Reference.VERSION_ID < VersionChecker.getVersion()) {
+                    player.sendMessage(Text.literal("[CoreExtensions] 发现新版本"), false);
+                    player.sendMessage(Text.literal("[CoreExtensions] Found new version"), false);
+                }
             }
-        }
+        });
+
     }
 }

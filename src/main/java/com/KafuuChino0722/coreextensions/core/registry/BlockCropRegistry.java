@@ -30,7 +30,7 @@ import net.minecraft.util.Identifier;
 import java.util.Map;
 
 import static com.KafuuChino0722.coreextensions.CoreManager.provider;
-import static com.KafuuChino0722.coreextensions.core.api.ModelBuilder.Block.Types.FRUITBUSH;
+import static com.KafuuChino0722.coreextensions.core.api.ModelBuilder.Block.Types.FRUIT_BUSH;
 import static com.KafuuChino0722.coreextensions.core.api.ModelBuilder.Crop.Types.CROP;
 import static com.KafuuChino0722.coreextensions.core.api.ModelBuilder.Crop.Types.HIGHCROP;
 import static com.KafuuChino0722.coreextensions.core.api.ModelBuilder.Item.Types.GENERATE;
@@ -156,7 +156,7 @@ public class BlockCropRegistry {
                 setupRenderLayer.set(block);
             }
             if(generate) {
-                ModelBuilder.Block.getModel(namespace,id,FRUITBUSH);
+                ModelBuilder.Block.getModel(namespace,id, FRUIT_BUSH);
             }
 
             Tags.generateFruitBush(namespace,id);

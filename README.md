@@ -11,15 +11,10 @@ Hello, do you want to make a minecraft mod without learning JAVA? Yes, this is a
 * Minecraft 1.20.1
 ## Dependencies
 * Fabric-API
-* Cloth Config AP
 * Better Runtime Resource Pack (BRRP)
 ## Optional
 * PolyMc
 * Polymer
-* Polydex
-* Polypack Host
-* PolyPuck(Only Client)
-* GeyserMC-Fabric
 ## Download Link
 * https://modrinth.com/mod/coreextensions/versions
 * https://www.mcmod.cn/class/12135.html
@@ -38,15 +33,10 @@ Hello, do you want to make a minecraft mod without learning JAVA? Yes, this is a
 * 我的世界 1.20.1
 ## 依赖关系
 * Fabric-API
-* Cloth Config AP
 * Better Runtime Resource Pack (BRRP)
 ## 可选的(联动)
 * PolyMc
 * Polymer
-* Polydex
-* Polypack Host
-* PolyPuck(仅限客户端)
-* GeyserMC-Fabric
 ## 下载地址
 * https://modrinth.com/mod/coreextensions/versions
 * https://www.mcmod.cn/class/12135.html

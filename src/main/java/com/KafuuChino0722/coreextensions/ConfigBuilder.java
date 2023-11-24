@@ -22,6 +22,7 @@ public class ConfigBuilder {
                 "# Settings\n" +
                 "settings:\n" +
                 "  ALLOW_EXISTING_REGISTRY_RELOADING: true\n" +
+                "  ALLOW_SINGLE_PLAYER_SLEEP_SKIP_NIGHT: false\n" +
                 "  ALLOW_RELOADING_REGISTRY: true\n" +
                 "  AUTO-REPLACE_RELOADING_REGISTRY_BLOCKS: false\n" +
                 "  CHECKING_FOR_UPDATE: true\n" +
@@ -34,6 +35,7 @@ public class ConfigBuilder {
                 "  FEATURE_AETHER: true\n" +
                 "  FEATURE_ITEMSADDER: true\n" +
                 "  FEATURE_GAMETEST: true\n" +
+                "  TICK_EVENTS: true: true\n" +
                 "  FIX_POTION_GLOWING: true\n" +
                 "  CONFIG_VERSION: 1";
         try {

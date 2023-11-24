@@ -13,6 +13,7 @@ extendable class net/minecraft/item/ItemGroup
 #accessible class net/minecraft/client/render/model/WeightedBakedModel$Entry
 #extendable class net/minecraft/util/profiler/ProfilerTiming
 # Methods
+#accessible method net/minecraft/world/gen/stateprovider/SimpleBlockStateProvider <init> (Lnet/minecraft/block/SimpleBlockStateProvider;)V
 accessible method net/minecraft/item/ItemGroup <init> (Lnet/minecraft/item/ItemGroup$Row;ILnet/minecraft/item/ItemGroup$Type;Lnet/minecraft/text/Text;Ljava/util/function/Supplier;Lnet/minecraft/item/ItemGroup$EntryCollector;)V
 accessible method net/minecraft/registry/Registries init ()V
 accessible method net/minecraft/entity/effect/StatusEffect <init> (Lnet/minecraft/entity/effect/StatusEffectCategory;I)V
@@ -27,8 +28,13 @@ accessible method net/minecraft/util/Identifier validateNamespace (Ljava/lang/St
 accessible method net/minecraft/util/Identifier validatePath (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 extendable method net/minecraft/entity/Entity setRemoved (Lnet/minecraft/entity/Entity$RemovalReason;)V
 accessible method net/minecraft/item/ItemGroup$EntriesImpl add (Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemGroup$StackVisibility;)V
+accessible method net/minecraft/server/PlayerManager broadcast (Lnet/minecraft/network/message/SignedMessage;Ljava/util/function/Predicate;Lnet/minecraft/server/network/ServerPlayerEntity;Lnet/minecraft/network/message/MessageType$Parameters;)V
+accessible method net/minecraft/server/PlayerManager verify (Lnet/minecraft/network/message/SignedMessage;)Z
+accessible method net/minecraft/item/Item raycast (Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/world/RaycastContext$FluidHandling;)Lnet/minecraft/util/hit/BlockHitResult;
 
 # Fields
+accessible field net/minecraft/server/network/ServerPlayerInteractionManager world Lnet/minecraft/server/world/ServerWorld;
+accessible field net/minecraft/server/network/ServerPlayerInteractionManager player Lnet/minecraft/server/network/ServerPlayerEntity;
 accessible field net/minecraft/resource/ResourcePackProfile LOGGER Lorg/slf4j/Logger;
 accessible field net/minecraft/resource/DirectoryResourcePack LOGGER Lorg/slf4j/Logger;
 accessible field net/minecraft/resource/DirectoryResourcePack SEPARATOR_JOINER Lcom/google/common/base/Joiner;
@@ -51,12 +57,10 @@ accessible field net/minecraft/network/ClientConnection address Ljava/net/Socket
 accessible field net/minecraft/network/ClientConnection channel Lio/netty/channel/Channel;
 accessible field net/minecraft/client/MinecraftClient session Lnet/minecraft/client/util/Session;
 
-accessible field net/minecraft/world/chunk/WorldChunk world Lnet/minecraft/world/chunk/World;
+#accessible field net/minecraft/world/chunk/WorldChunk world Lnet/minecraft/world/chunk/World;
 accessible field net/minecraft/world/chunk/WorldChunk$DirectBlockEntityTickInvoker blockEntity Lnet/minecraft/block/entity/BlockEntity;
 accessible field net/minecraft/world/chunk/WorldChunk$DirectBlockEntityTickInvoker ticker Lnet/minecraft/block/entity/BlockEntityTicker;
 accessible field net/minecraft/world/chunk/WorldChunk$DirectBlockEntityTickInvoker hasWarned Z
-accessible field net/minecraft/world/chunk/WorldChunk$DirectBlockEntityTickInvoker worldChunk Lnet/minecraft/world/chunk/WorldChunk;
-
 accessible field net/minecraft/item/ItemGroup$EntriesImpl group Lnet/minecraft/item/ItemGroup;
 accessible field net/minecraft/item/ItemGroup$EntriesImpl enabledFeatures Lnet/minecraft/resource/featuretoggle/FeatureSet;
 
@@ -69,6 +73,7 @@ mutable field net/minecraft/registry/SimpleRegistry idToEntry Ljava/util/Map;
 mutable field net/minecraft/registry/SimpleRegistry keyToEntry Ljava/util/Map;
 mutable field net/minecraft/registry/SimpleRegistry valueToEntry Ljava/util/Map;
 mutable field net/minecraft/registry/SimpleRegistry entryToLifecycle Ljava/util/Map;
+mutable field net/minecraft/server/network/ServerPlayerInteractionManager player Lnet/minecraft/server/network/ServerPlayerEntity;
 
 mutable field net/minecraft/item/ItemGroup row Lnet/minecraft/item/ItemGroup$Row;
 mutable field net/minecraft/item/ItemGroup column I

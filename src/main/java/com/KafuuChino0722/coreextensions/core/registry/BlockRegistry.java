@@ -1,6 +1,5 @@
 package com.KafuuChino0722.coreextensions.core.registry;
 
-import com.KafuuChino0722.coreextensions.Config;
 import com.KafuuChino0722.coreextensions.block.ChestBlockExtends;
 import com.KafuuChino0722.coreextensions.block.CubeBlock;
 import com.KafuuChino0722.coreextensions.block.PowerBlock;
@@ -10,6 +9,10 @@ import com.KafuuChino0722.coreextensions.core.api.util.setupRenderLayer;
 import com.KafuuChino0722.coreextensions.core.registry._Fix.WorldRegistryDataReloading;
 import com.KafuuChino0722.coreextensions.core.template.Template;
 import com.KafuuChino0722.coreextensions.util.*;
+import com.terraformersmc.terraform.sign.block.TerraformHangingSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformWallHangingSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -985,7 +988,7 @@ public class BlockRegistry {
                             TAG_LOGS_BLOCK.add(new Identifier(namespace, id));
                             TAG_LOGS_BLOCK.add(new Identifier(namespace, "stripped_"+id));
                             provider.add("block." +namespace +"."+"stripped_"+id, name);
-                            ModelTypes = CUBECOLUMN;
+                            ModelTypes = CUBE_COLUMN;
                         }
                         case "leaves" -> {
                             block = new LeavesBlock(blockSettings);
@@ -1341,7 +1344,7 @@ public class BlockRegistry {
                             }
                             TAG_GLASS_BLOCK.add(new Identifier(namespace, id));
                             TAG_GLASS_ITEM.add(new Identifier(namespace, id));
-                            ModelTypes = GLASSPANE;
+                            ModelTypes = GLASS_PANE;
                         }
                         case "carpet" -> {
                             block = new CarpetBlock(blockSettings);
@@ -1386,7 +1389,6 @@ public class BlockRegistry {
                                             if(hasGlint) return true;
                                             return false;
                                         }
-
                                     };
                                     setRegistry.set(namespace, id, BlockItem);
                                     WorldRegistryDataReloading.run(BlockItem,oldBlockItem);
@@ -1396,6 +1398,80 @@ public class BlockRegistry {
                             TAG_WOOL_CARPETS_BLOCK.add(new Identifier(namespace, id));
                             TAG_WOOL_CARPETS_ITEM.add(new Identifier(namespace, id));
                             ModelTypes = CARPETS;
+                        }
+                        case "sign" -> {
+                            Identifier SIGN_TEXTURE = new Identifier(namespace,"entity/signs/"+id);
+                            Identifier HANGING_SIGN_TEXTURE = new Identifier(namespace,"entity/signs/hanging/"+id);
+                            Identifier HANGING_GUI_SIGN_TEXTURE = new Identifier(namespace,"textures/gui/hanging_signs/"+id);
+
+                            Block STANDING_SIGN = new TerraformSignBlock(SIGN_TEXTURE, blockSettings);
+                            Block WALL_SIGN = new TerraformWallSignBlock(SIGN_TEXTURE, blockSettings);
+                            Block HANGING_SIGN = new TerraformHangingSignBlock(HANGING_SIGN_TEXTURE, HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.OAK_HANGING_SIGN));
+                            Block WALL_HANGING_SIGN = new TerraformWallHangingSignBlock(HANGING_SIGN_TEXTURE, HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.OAK_WALL_HANGING_SIGN));
+                            Item SIGN_ITEM = new SignItem(itemSettings, STANDING_SIGN, WALL_SIGN) {
+                                @Override
+                                public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+                                    if (tooltipMsg != null) {
+                                        for (String Line : tooltipMsg) {
+                                            tooltip.add(Text.of("§5§o" + Line));
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public boolean hasGlint(ItemStack stack) {
+                                    if(hasGlint) return true;
+                                    return false;
+                                }
+                            };
+                            Item HANGING_SIGN_ITEM = new HangingSignItem(HANGING_SIGN, WALL_HANGING_SIGN, itemSettings) {
+                                @Override
+                                public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+                                    if (tooltipMsg != null) {
+                                        for (String Line : tooltipMsg) {
+                                            tooltip.add(Text.of("§5§o" + Line));
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public boolean hasGlint(ItemStack stack) {
+                                    if(hasGlint) return true;
+                                    return false;
+                                }
+                            };
+
+                            try {
+                                Registry.register(Registries.BLOCK, new Identifier(namespace,id+"_"+"standing"),
+                                        STANDING_SIGN);
+                                Registry.register(Registries.BLOCK, new Identifier(namespace,id+"_"+"wall"),
+                                        WALL_SIGN);
+                                Registry.register(Registries.BLOCK, new Identifier(namespace, id+"_"+"hanging"),
+                                        HANGING_SIGN);
+                                Registry.register(Registries.BLOCK, new Identifier(namespace, id+"_"+"wall_hanging"),
+                                        WALL_HANGING_SIGN);
+                                Registry.register(Registries.ITEM, new Identifier(namespace, id), SIGN_ITEM);
+                                Registry.register(Registries.ITEM, new Identifier(namespace, id+"_"+"hanging"), HANGING_SIGN_ITEM);
+                            } catch (Exception e) {
+                                Item oldBlockItem1 = Registries.ITEM.get(new Identifier(namespace,id));
+                                Item oldBlockItem2 = Registries.ITEM.get(new Identifier(namespace,id+"_"+"hanging"));
+                                setRegistry.set(namespace,id+"_"+"standing",STANDING_SIGN);
+                                setRegistry.set(namespace,id+"_"+"wall",WALL_SIGN);
+                                setRegistry.set(namespace,id+"_"+"hanging",HANGING_SIGN);
+                                setRegistry.set(namespace,id+"_"+"wall_hanging",WALL_HANGING_SIGN);
+                                setRegistry.set(namespace,id,SIGN_ITEM);
+                                setRegistry.set(namespace,id+"_"+"hanging",HANGING_SIGN_ITEM);
+                                WorldRegistryDataReloading.run(SIGN_ITEM,oldBlockItem1);
+                                WorldRegistryDataReloading.run(HANGING_SIGN_ITEM,oldBlockItem2);
+                            }
+
+                            TAG_SIGNS_ITEM.add(SIGN_ITEM);
+                            TAG_HANGING_SIGNS_ITEM.add(HANGING_SIGN_ITEM);
+                            TAG_STANDING_SIGNS_BLOCK.add(HANGING_SIGN);
+                            TAG_WALL_HANGING_SIGNS_BLOCK.add(WALL_HANGING_SIGN);
+                            provider.add("block." +namespace +"."+id+"_standing", name);
+                            provider.add("block." +namespace +"."+id+"_hanging", name);
+                            ModelTypes = SIGN;
                         }
                         case "template" -> {
                             String TemplateIdentifier = (String) properties.getOrDefault("template",null);

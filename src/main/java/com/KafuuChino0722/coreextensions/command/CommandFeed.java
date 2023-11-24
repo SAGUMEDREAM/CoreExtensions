@@ -39,6 +39,7 @@ public class CommandFeed {
         for (ServerPlayerEntity serverPlayerEntity : targets) {
             serverPlayerEntity.getHungerManager().setFoodLevel(20);
             serverPlayerEntity.getHungerManager().setSaturationLevel(20.0f);
+            serverPlayerEntity.sendMessage(Text.translatable("commands.feed.done"), false);
         }
         return targets.size();
     }

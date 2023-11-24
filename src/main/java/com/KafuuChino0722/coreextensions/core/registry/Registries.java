@@ -2,14 +2,19 @@ package com.KafuuChino0722.coreextensions.core.registry;
 
 import com.KafuuChino0722.coreextensions.Config;
 import com.KafuuChino0722.coreextensions.CoreManager;
+import com.KafuuChino0722.coreextensions.core.registry._Fix.PolyReloading;
 import com.KafuuChino0722.coreextensions.core.registry._Modify.*;
+import net.fabricmc.loader.api.FabricLoader;
 
 public class Registries extends net.minecraft.registry.Registries {
 
     public static boolean AllowExistingReloading = Config.getConfigBoolean("ALLOW_EXISTING_REGISTRY_RELOADING");
 
+    public static int registriesCount = 0;
+
     public static void bootstrap() {
         boolean IsInstalled = CoreManager.IsInstalled;
+
         CommandRegistry.register();
         TagRegistry.register();
         BlockRegistry.register();
@@ -44,6 +49,12 @@ public class Registries extends net.minecraft.registry.Registries {
         _Extend_Tag.register();
         //RegRefect.load();
         FluidRegistry.register();
-        DisableFeature.register();
+        DisableFeatureRegistry.register();
+
+        if(IsInstalled && FabricLoader.getInstance().isModLoaded("polymc")) {
+            PolyReloading.reload();
+        }
+
+        registriesCount = registriesCount + 1;
     }
 }

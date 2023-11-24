@@ -1,6 +1,6 @@
 package com.KafuuChino0722.coreextensions;
 
-import com.BungeeX.EaglerXBungee;
+import com.KafuuChino0722.coreextensions.enchant.Enchantments;
 import com.KafuuChino0722.coreextensions.gametest.GameTest;
 import com.KafuuChino0722.coreextensions.network.VersionChecker;
 import com.KafuuChino0722.coreextensions.proxy.ClientProxy;
@@ -20,6 +20,7 @@ import pers.solid.brrp.v1.fabric.api.RRPCallback;
 
 import java.io.File;
 import java.nio.file.Path;
+import java.util.concurrent.CompletableFuture;
 
 
 public class Main implements ModInitializer {
@@ -54,6 +55,7 @@ public class Main implements ModInitializer {
 		if (featureEnabled) {
 			MessageLoad.loadOn();
 			ItemManager.load();
+			Enchantments.load();
 			BlockManager.load();
 			VanillaManager.load();
 			EntityManager.load();
@@ -66,6 +68,7 @@ public class Main implements ModInitializer {
 
 		CoreManager.bootstrap();
 		CoreManager.IsInstalled = true;
+		//Feature_Gametest.test();
 
 		com.LoneDev.itemsadder.Main.bootstrap();
 		new CommonProxy().onInitializeCommon(CORE_API_Enabled);
@@ -97,7 +100,8 @@ public class Main implements ModInitializer {
 			setup();
 		}
 
-		VersionChecker.check();
+		CompletableFuture<Void> future = CompletableFuture.runAsync(VersionChecker::check);
+
 
 		if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
 			Info.custom("Environment Type Client", "FabricLoader");

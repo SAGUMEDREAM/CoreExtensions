@@ -9,7 +9,7 @@ import java.util.Map;
 import static com.KafuuChino0722.coreextensions.CoreManager.*;
 
 public class Tags {
-    public static class Item {
+    /*public static class Item {
         public static void generateTags(String namespace, String id, Map<String, Object> properties) {
             if (properties.containsKey("tag") || properties.containsKey("tag2") || properties.containsKey("tag3") || properties.containsKey("tag4")) {
 
@@ -54,7 +54,8 @@ public class Tags {
                     }
             }
         }
-    }
+    }*/
+
     public static void generateMusicCD(String namespace, String id) {
         TAG_MUSIC_DISCS.add(new Identifier(namespace, id));
     }
@@ -63,7 +64,7 @@ public class Tags {
         TAG_WATER.add(STILL).add(FLOWING);
     }
 
-    public static void generateFluidLava(Fluid STILL,Fluid FLOWING) {
+    public static void generateFluidLava(Fluid STILL, Fluid FLOWING) {
         TAG_LAVA.add(STILL).add(FLOWING);
     }
 

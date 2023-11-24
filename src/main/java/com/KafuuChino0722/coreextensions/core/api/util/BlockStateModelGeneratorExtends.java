@@ -22,6 +22,10 @@ public class BlockStateModelGeneratorExtends extends BlockStateModelGenerator {
         super(blockStateCollector, modelCollector, simpleItemModelExemptionCollector);
     }
 
+    public static BlockStateSupplier createHangingSignBlockState(Block block, Identifier modelId) {
+        return VariantsBlockStateSupplier.create(block, BlockStateVariant.create().put(VariantSettings.MODEL, modelId));
+    }
+
     public static BlockStateSupplier createHighPlantBlockState(Block block, Identifier modelId, Identifier modelId2) {
         return VariantsBlockStateSupplier.create(block)
                 .coordinate(BlockStateVariantMap.create(Properties.DOUBLE_BLOCK_HALF)

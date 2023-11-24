@@ -1,19 +1,14 @@
 package com.KafuuChino0722.coreextensions.fluid;
 
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -21,34 +16,29 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
-
 public class CustomFluid extends FlowableFluid {
 
-    public String KeyTitle;
+    public FluidVoid Void;
 
-
-    public CustomFluid(String KeyTitle) {
+    public CustomFluid(FluidVoid Void) {
         super();
-        this.KeyTitle = KeyTitle;
+        this.Void = Void;
     }
 
     @Override
-    public final Fluid getFlowing() {
-        //return iZipFluids.FLOWING_WATER;
-        return Registries.FLUID.get((new Identifier((String) iZipFluids.returnN(KeyTitle,"namespace"),"flowing_"+(String) iZipFluids.returnN(KeyTitle,"id"))));
+    public Fluid getFlowing() {
+        return this.Void.FLOWING_WATER;
     }
 
     @Override
-    public final Fluid getStill() {
-        //return iZipFluids.FLOWING_WATER;
-        return Registries.FLUID.get((new Identifier((String) iZipFluids.returnN(KeyTitle,"namespace"),(String) iZipFluids.returnN(KeyTitle,"id"))));
+    public Fluid getStill() {
+        return this.Void.STILL_WATER;
     }
 
     // 是否可以生成无限水
     @Override
-    protected boolean isInfinite(World world) {
-        //return isInfinite;
-        return (boolean) iZipFluids.returnO(KeyTitle,"isInfinite");
+    protected final boolean isInfinite(World world) {
+        return this.Void.isInfinite;
     }
 
     @Override
@@ -58,13 +48,8 @@ public class CustomFluid extends FlowableFluid {
     }
 
     @Override
-    protected final int getFlowSpeed(WorldView world) {
-        //return flowSpeed;
-        try {
-            return (int) iZipFluids.returnO(KeyTitle,"flowSpeed");
-        } catch (Exception e) {
-            return 15;
-        }
+    protected int getFlowSpeed(WorldView world) {
+        return this.Void.flowSpeed;
     }
 
     @Override
@@ -78,13 +63,9 @@ public class CustomFluid extends FlowableFluid {
     }
 
     @Override
-    public final Item getBucketItem() {
-        //return iZipFluids.WATER_BUCKET;
-        try {
-            return Registries.ITEM.get(new Identifier((String) iZipFluids.returnN(KeyTitle,"namespace"),(String) iZipFluids.returnN(KeyTitle,"id")+"_bucket"));
-        } catch (Exception e) {
-            return Items.WATER_BUCKET;
-        }
+    public Item getBucketItem() {
+        //return RegFluids.WATER_BUCKET;
+        return this.Void.WATER_BUCKET;
     }
 
     @Override
@@ -105,12 +86,8 @@ public class CustomFluid extends FlowableFluid {
 
     @Override
     protected final BlockState toBlockState(FluidState state) {
-        //return iZipFluids.WATER_BLOCK.getDefaultState().with(Properties.LEVEL_15,getBlockStateLevel(state));
-        try {
-            return Registries.BLOCK.get(new Identifier((String) iZipFluids.returnN(KeyTitle,"namespace"),(String) iZipFluids.returnN(KeyTitle,"id"))).getDefaultState().with(Properties.LEVEL_15,getBlockStateLevel(state));
-        } catch (Exception e) {
-            return Blocks.WATER.getDefaultState().with(Properties.LEVEL_15,getBlockStateLevel(state));
-        }
+        return this.Void.WATER_BLOCK.getDefaultState().with(Properties.LEVEL_15,getBlockStateLevel(state));
+
     }
 
     @Override
@@ -123,9 +100,9 @@ public class CustomFluid extends FlowableFluid {
         return 0;
     }
 
-    public static class Flowing extends CustomFluid{
-        public Flowing(String KeyTitle) {
-            super(KeyTitle);
+    public static class Flowing extends CustomFluid {
+        public Flowing(FluidVoid Void) {
+            super(Void);
         }
 
         @Override
@@ -145,10 +122,9 @@ public class CustomFluid extends FlowableFluid {
         }
     }
 
-
-    public static class Still extends CustomFluid{
-        public Still(String KeyTitle) {
-            super(KeyTitle);
+    public static class Still extends CustomFluid {
+        public Still(FluidVoid Void) {
+            super(Void);
         }
 
         @Override

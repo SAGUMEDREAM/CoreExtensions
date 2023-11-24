@@ -5,6 +5,7 @@ import com.KafuuChino0722.coreextensions.util.Info;
 import com.KafuuChino0722.coreextensions.util.Reference;
 import com.KafuuChino0722.coreextensions.util.ReturnMessage;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+import net.fabricmc.fabric.api.registry.VillagerInteractionRegistries;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
@@ -36,6 +37,8 @@ public class CompostingRegistry {
                     if(Registries.ITEM.containsId(new Identifier(namespace, id))) {
                         Item ItemResources = Registries.ITEM.get(new Identifier(namespace, id));
                         CompostingChanceRegistry.INSTANCE.add(ItemResources,(float) chance);
+                        VillagerInteractionRegistries.registerCollectable(ItemResources);
+                        VillagerInteractionRegistries.registerCompostable(ItemResources);
                         ReturnMessage.CompostingYMLRegister(name, namespace, id); //returnMessage
                     } else {
                         Info.ERROR.info("Can't find item for"+namespace+":"+id+"in data/composting.yml");
