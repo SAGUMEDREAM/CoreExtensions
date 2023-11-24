@@ -1,0 +1,63 @@
+{
+  "required": true,
+  "package": "com.KafuuChino0722.coreextensions.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "AbstractBlockMixin",
+    "AllowPlayerDataEditMixin",
+    "BlockMixin",
+    "BlocksMixin",
+    "BootstrapMixin",
+    "CEMixin",
+    "Color",
+    "CommandManagerCommonMixin",
+    "CommandSourceMixin",
+    "FabricItemGroupBuilderImplAccessor",
+    "FabricItemGroupBuilderImplMixin",
+    "IdentifierMixin",
+    "ItemGroupAccessor",
+    "ItemGroupEntriesImplMixin",
+    "ItemsMixin",
+    "ItemStackMixin",
+    "MinecraftServerMixin",
+    "MixinManager",
+    "PlayerEntityMixin",
+    "PlayerManagerMixin",
+    "PotionItemMixin",
+    "RegistriesMixin",
+    "ServerPlayerEntityMixin",
+    "ServerPlayerInteractionManagerMixin",
+    "ServerPlayNetworkHandlerMixin",
+    "ServerWorldMixin",
+    "SimpleRegistryMixin",
+    "SleepManagerMixin",
+    "SnowballEntityMixin",
+    "StructureBlockMixin",
+    "TagGroupLoaderMixin",
+    "WorldChunkMixin"
+  ],
+  "client": [
+    "BypassWarningScreenMixin",
+    "ClientConnectionMixin",
+    "ClientPlayerEntityMixin",
+    "ClientPlayNetworkHandlerMixin",
+    "CommandManagerClientMixin",
+    "CreativeInventoryScreenMixin",
+    "DirectoryResourcePackMixin",
+    "IntegratedServerLoaderMixin",
+    "KeyboardMixin",
+    "MessageIndicatorMixin",
+    "MinecraftClientMixin",
+    "ReadTimeoutHandlerMixin",
+    "ResourcePackProfileMixin",
+    "Verify",
+    "WarningScreenAccessor"
+  ],
+  "server": [
+    "CEMixin",
+    "CommandManagerServerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

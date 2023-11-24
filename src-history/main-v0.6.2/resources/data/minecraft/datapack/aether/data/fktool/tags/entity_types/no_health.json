@@ -1,0 +1,13 @@
+{
+  "values": [
+    "minecraft:item",
+    "minecraft:marker",
+    "minecraft:area_effect_cloud",
+    "minecraft:armor_stand",
+    "minecraft:evoker_fangs",
+    "minecraft:experience_orb",
+    "minecraft:eye_of_ender",
+    "minecraft:leash_knot",
+    "minecraft:lightning_bolt"
+  ]
+}
