@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "   ",
+    " A ",
+    "   "
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:3d"
+    }
+  },
+  "result": {
+    "item": "minecraft:mojang_dev",
+    "count": 1
+  }
+}

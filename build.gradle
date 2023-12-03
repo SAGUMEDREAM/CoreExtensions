@@ -26,6 +26,9 @@ repositories {
 	//maven {
         //url = "https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/"
     //}
+
+	maven { url = 'https://maven.minecraftforge.net/' }
+
 	maven {
 		url = uri("https://ueaj.dev/maven")
 		// for 0.4.2 and older
@@ -74,6 +77,14 @@ repositories {
 	maven {
       name = 'TerraformersMC'
       url = 'https://maven.terraformersmc.com/'
+    }
+	
+	maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
     }
 
 }
@@ -127,6 +138,7 @@ dependencies {
 	include 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
 	implementation 'io.netty:netty-codec-http:4.1.63.Final'
 	include 'io.netty:netty-codec-http:4.1.63.Final'
+	
 	//implementation 'io.netty:netty-codec-http-websocket:4.1.63.Final'
 	//include 'io.netty:netty-codec-http-websocket:4.1.63.Final'
 	modImplementation("net.devtech:arrp:0.8.0")
@@ -154,6 +166,12 @@ dependencies {
 	//modImplementation(include("com.tterrag.registrate_fabric:Registrate:${project.registrate_version}"))
 
 	//modImplementation(include("io.github.fabricators_of_create.Porting-Lib:<module>:<version>"))
+	
+	modImplementation files('dir/AnvilAPI-1.20.1-fabric-4.1.4.0.jar')
+	include files('dir/AnvilAPI-1.20.1-fabric-4.1.4.0.jar')
+	
+	modApi "maven.modrinth:codelib:${project.codelib_version}"
+    include "maven.modrinth:codelib:${project.codelib_version}"
 	
 	modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.1"
 	modImplementation "com.terraformersmc.terraform-api:terraform-shapes-api-v1:7.0.1"
